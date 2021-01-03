@@ -13,7 +13,7 @@ const Main = ({ handleLogout }) => (
 
     <div className="main">
       <div className="image">
-        <img src={logo} width="800px" />
+        <img src={logo} alt="" width="800px" />
       </div>
 
       <div className="questionBox">
@@ -23,9 +23,9 @@ const Main = ({ handleLogout }) => (
         </h2>
 
         <div className="imageAnswerBox">
-          <img src={check} width="200px" />
-          <img src={redx} width="200px" />
-          <img src={nextarrow} className="arrow" />
+          <img src={check} alt="" width="200px" />
+          <img src={redx} alt="" width="200px" />
+          <img src={nextarrow} alt="" className="arrow" />
         </div>
 
         {/*

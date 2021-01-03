@@ -17,7 +17,7 @@ const Login = (props) => {
 
   return (
     <section className="login">
-      <img src={logo} className="login-logo" />
+      <img src={logo} alt="" className="login-logo" />
       <div className="loginContainer">
         <div className="video">
           <iframe width="400" height="300" src="https://www.youtube.com/embed/Vfsux6V2-hU?controls=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
@@ -36,7 +36,7 @@ const Login = (props) => {
                 <>
                   <button onClick={handleLogin}>Sign in</button>
                   <p>
-                    Don't have an account ?
+                    Don&apos;t have an account ?
                     <span onClick={() => setHasAccount(!hasAccount)}>Sign up</span>
                   </p>
                 </>
