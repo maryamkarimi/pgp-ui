@@ -7,31 +7,34 @@ import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 import "./Login.css";
 
-export default function Login() {
+const Login = () => {
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   });
 
   function validateForm() {
     return fields.email.length > 0 && fields.password.length > 0;
   }
 
-  async function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     setIsLoading(true);
 
-    try {
-      await Auth.signIn(fields.email, fields.password);
-      userHasAuthenticated(true);
-    } catch (e) {
-      onError(e);
-      setIsLoading(false);
-    }
-  }
+    Auth.signIn(fields.email, fields.password)
+        .then(() => {
+          userHasAuthenticated(true);
+          setError('');
+          history.push('/admin');
+        })
+        .catch((e) => {
+          setError(e.message);
+          setIsLoading(false);
+        });
+  };
 
   return (
     <div className="Login">
@@ -65,4 +68,6 @@ export default function Login() {
       </Form>
     </div>
   );
-}
+};
+
+export default Login;

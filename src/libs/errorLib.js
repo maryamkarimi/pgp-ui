@@ -1,4 +1,4 @@
-export function onError(error) {
+export const onError = (error) => {
   let message = error.toString();
 
   // Auth errors
@@ -7,4 +7,4 @@ export function onError(error) {
   }
 
   alert(message);
-}
+};

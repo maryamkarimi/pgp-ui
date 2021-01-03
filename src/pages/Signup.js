@@ -29,13 +29,13 @@ export default function Signup() {
     );
   }
 
-  function validateConfirmationForm() {
+  const validateConfirmationForm = () => {
     return fields.confirmationCode.length > 0;
-  }
+  };
 
-  async function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     setIsLoading(true);
   
     try {
@@ -69,7 +69,7 @@ export default function Signup() {
   }
   
 
-  function renderConfirmationForm() {
+  const renderConfirmationForm = () => {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
         <Form.Group controlId="confirmationCode" size="lg">
@@ -94,11 +94,12 @@ export default function Signup() {
         </LoaderButton>
       </Form>
     );
-  }
+  };
 
-  function renderForm() {
+  const renderForm = () => {
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form style={{ width: '100%' }} onSubmit={handleSubmit}>
+
         <Form.Group controlId="email" size="lg">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -108,6 +109,7 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </Form.Group>
+
         <Form.Group controlId="password" size="lg">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -116,6 +118,7 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </Form.Group>
+
         <Form.Group controlId="confirmPassword" size="lg">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
@@ -136,11 +139,14 @@ export default function Signup() {
         </LoaderButton>
       </Form>
     );
-  }
+  };
 
   return (
-    <div className="Signup">
+    <>
       {newUser === null ? renderForm() : renderConfirmationForm()}
-    </div>
+    </>
   );
-}
+};
+
+
+export default Signup;

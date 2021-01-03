@@ -1,7 +1,9 @@
 import React from "react";
 import "./Home.css";
 
-export default function Home() {
+const Home = () => {
+  const [hasAccount, setHasAccount] = useState(true);
+
   return (
     <div className="Home">
       <div className="video">
@@ -9,4 +11,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
