@@ -1,33 +1,35 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import { useHistory } from "react-router-dom";
-import LoaderButton from "../components/LoaderButton";
-import { useAppContext } from "../libs/contextLib";
-import { useFormFields } from "../libs/hooksLib";
-import { onError } from "../libs/errorLib";
-import "./Signup.css";
-import { Auth } from "aws-amplify";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import LoaderButton from '../components/LoaderButton';
+import { useAppContext } from '../libs/contextLib';
+import { useFormFields } from '../libs/hooksLib';
+import './Signup.css';
+import { Auth } from 'aws-amplify';
+import { Form } from 'react-bootstrap';
 
-
-export default function Signup() {
+const Signup = () => {
   const [fields, handleFieldChange] = useFormFields({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    confirmationCode: "",
+    email: '',
+    password: '',
+    age: '',
+    sex: '',
+    confirmPassword: '',
+    confirmationCode: '',
   });
   const history = useHistory();
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  function validateForm() {
+  const [error, setError] = useState('');
+
+  const validateForm = () => {
     return (
       fields.email.length > 0 &&
       fields.password.length > 0 &&
       fields.password === fields.confirmPassword
     );
-  }
+  };
 
   const validateConfirmationForm = () => {
     return fields.confirmationCode.length > 0;
@@ -37,41 +39,40 @@ export default function Signup() {
     event.preventDefault();
 
     setIsLoading(true);
-  
-    try {
-      const newUser = await Auth.signUp({
-        username: fields.email,
-        password: fields.password,
-      });
+
+    Auth.signUp({
+      username: fields.email,
+      password: fields.password,
+    }).then((newUser) => {
       setIsLoading(false);
       setNewUser(newUser);
-    } catch (e) {
-      onError(e);
+    }).catch((e) => {
+      setError(e.message);
       setIsLoading(false);
-    }
-  }
-  
-  async function handleConfirmationSubmit(event) {
+    });
+  };
+
+  const handleConfirmationSubmit = (event) => {
     event.preventDefault();
-  
+
     setIsLoading(true);
-  
-    try {
-      await Auth.confirmSignUp(fields.email, fields.confirmationCode);
-      await Auth.signIn(fields.email, fields.password);
-  
-      userHasAuthenticated(true);
-      history.push("/");
-    } catch (e) {
-      onError(e);
-      setIsLoading(false);
-    }
-  }
-  
+
+    Auth.confirmSignUp(fields.email, fields.confirmationCode)
+        .then(() => Auth.signIn(fields.email, fields.password))
+        .then(() => {
+          userHasAuthenticated(true);
+          history.push('/');
+        }).catch((e) => {
+          setError(e.message);
+          setIsLoading(false);
+        });
+  };
+
 
   const renderConfirmationForm = () => {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
+
         <Form.Group controlId="confirmationCode" size="lg">
           <Form.Label>Confirmation Code</Form.Label>
           <Form.Control
@@ -82,6 +83,7 @@ export default function Signup() {
           />
           <Form.Text muted>Please check your email for the code.</Form.Text>
         </Form.Group>
+
         <LoaderButton
           block
           size="lg"
@@ -127,6 +129,27 @@ export default function Signup() {
             value={fields.confirmPassword}
           />
         </Form.Group>
+
+        <Form.Group controlId="email" size="lg">
+          <Form.Label>Sex</Form.Label>
+          <Form.Control
+            autoFocus
+            type="email"
+            value={fields.sex}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="email" size="lg">
+          <Form.Label>Age</Form.Label>
+          <Form.Control
+            autoFocus
+            type="email"
+            value={fields.age}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+
         <LoaderButton
           block
           size="lg"
@@ -137,6 +160,8 @@ export default function Signup() {
         >
           Signup
         </LoaderButton>
+
+        <div className="errorMsg">{error}</div>
       </Form>
     );
   };

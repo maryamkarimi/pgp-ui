@@ -1,27 +1,25 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import Signup from "./pages/Signup";
-import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import UnauthenticatedRoute from './components/UnauthenticatedRoute';
+import Admin from './pages/Admin';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 
-export default function Routes() {
+const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <UnauthenticatedRoute exact path="/">
         <Home />
-      </Route>
-      <UnauthenticatedRoute exact path="/login">
-        <Login />
       </UnauthenticatedRoute>
-      <UnauthenticatedRoute exact path="/signup">
-        <Signup />
-      </UnauthenticatedRoute>
+      <AuthenticatedRoute exact path="/admin">
+        <Admin />
+      </AuthenticatedRoute>
       <Route>
         <NotFound />
       </Route>
     </Switch>
   );
-}
+};
+
+export default Routes;
