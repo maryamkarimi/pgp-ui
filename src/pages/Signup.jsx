@@ -2,63 +2,49 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LoaderButton from '../components/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
-import { useFormFields } from '../libs/hooksLib';
 import './Signup.css';
 import { Auth } from 'aws-amplify';
-import { Form } from 'react-bootstrap';
+import { Form, Input } from 'antd';
 
 const Signup = () => {
-  const [fields, handleFieldChange] = useFormFields({
-    email: '',
-    password: '',
-    age: '',
-    sex: '',
-    confirmPassword: '',
-    confirmationCode: '',
-  });
   const history = useHistory();
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [form] = Form.useForm();
+  const [userInfo, setUserInfo] = useState();
+
   const [error, setError] = useState('');
 
-  const validateForm = () => {
-    return (
-      fields.email.length > 0 &&
-      fields.password.length > 0 &&
-      fields.password === fields.confirmPassword
-    );
+  const handleSubmit = () => {
+    setError('');
+    form.validateFields()
+        .then((fields) => newUser === null ? handleSignupSubmit(fields) :
+                                                     handleConfirmationSubmit(fields));
   };
 
-  const validateConfirmationForm = () => {
-    return fields.confirmationCode.length > 0;
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSignupSubmit = (fields) => {
     setIsLoading(true);
 
     Auth.signUp({
       username: fields.email,
       password: fields.password,
-    }).then((newUser) => {
+    }).then((currentUser) => {
       setIsLoading(false);
-      setNewUser(newUser);
+      setNewUser(currentUser);
+      setUserInfo(fields);
     }).catch((e) => {
       setError(e.message);
       setIsLoading(false);
     });
   };
 
-  const handleConfirmationSubmit = (event) => {
-    event.preventDefault();
-
+  const handleConfirmationSubmit = (fields) => {
     setIsLoading(true);
 
-    Auth.confirmSignUp(fields.email, fields.confirmationCode)
-        .then(() => Auth.signIn(fields.email, fields.password))
+    Auth.confirmSignUp(userInfo.email, fields.confirmationCode)
+        .then(() => Auth.signIn(userInfo.email, userInfo.password))
         .then(() => {
           userHasAuthenticated(true);
           history.push('/');
@@ -68,108 +54,65 @@ const Signup = () => {
         });
   };
 
+  const signUpFields = () =>
+    <>
+      <label>Email</label>
+      <Form.Item name='email' rules={[{ required: true, type: 'email' }]}>
+        <Input />
+      </Form.Item>
 
-  const renderConfirmationForm = () => {
-    return (
-      <Form onSubmit={handleConfirmationSubmit}>
+      <label>Password</label>
+      <Form.Item name='password' rules={[{ required: true }]}>
+        <Input.Password />
+      </Form.Item>
 
-        <Form.Group controlId="confirmationCode" size="lg">
-          <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            autoFocus
-            type="tel"
-            onChange={handleFieldChange}
-            value={fields.confirmationCode}
-          />
-          <Form.Text muted>Please check your email for the code.</Form.Text>
-        </Form.Group>
+      <label>Confirm Password</label>
+      <Form.Item name='confirmPassword' dependencies={['password']} rules={[
+        {
+          required: true,
+        },
+        ({ getFieldValue }) => ({
+          validator(_, value) {
+            if (!value || getFieldValue('password') === value) {
+              return Promise.resolve();
+            }
+            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+          },
+        }),
+      ]}>
+        <Input.Password />
+      </Form.Item>
 
-        <LoaderButton
-          block
-          size="lg"
-          type="submit"
-          variant="success"
-          isLoading={isLoading}
-          disabled={!validateConfirmationForm()}
-        >
-          Verify
-        </LoaderButton>
-      </Form>
-    );
-  };
+      {/* add sex, age, etc*/}
+    </>;
 
-  const renderForm = () => {
-    return (
-      <Form style={{ width: '100%' }} onSubmit={handleSubmit}>
-
-        <Form.Group controlId="email" size="lg">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={fields.email}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="password" size="lg">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={fields.password}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="confirmPassword" size="lg">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            onChange={handleFieldChange}
-            value={fields.confirmPassword}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="email" size="lg">
-          <Form.Label>Sex</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={fields.sex}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="email" size="lg">
-          <Form.Label>Age</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={fields.age}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-
-        <LoaderButton
-          block
-          size="lg"
-          type="submit"
-          variant="success"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        >
-          Signup
-        </LoaderButton>
-
-        <div className="errorMsg">{error}</div>
-      </Form>
-    );
-  };
+  const confirmationFields = () =>
+    <>
+      <label>Confirmation Code</label>
+      <Form.Item name='confirmationCode' rules={[{ required: true }]}>
+        <Input />
+      </Form.Item>
+    </>;
 
   return (
-    <>
-      {newUser === null ? renderForm() : renderConfirmationForm()}
-    </>
+    <Form style={{ width: '100%' }} form={form} onFinish={handleSubmit}>
+
+      {newUser === null ? signUpFields() : confirmationFields()}
+
+      <Form.Item>
+        <LoaderButton
+          block
+          size="lg"
+          htmlType="submit"
+          variant="success"
+          isLoading={isLoading}
+        >
+          {newUser === null ? 'Sign up' : 'Verify'}
+        </LoaderButton>
+      </Form.Item>
+
+      <div className="errorMsg">{error}</div>
+    </Form>
   );
 };
 

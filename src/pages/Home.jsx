@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Home.css';
+import './Home.less';
 import logo from '../images/pgp-logo-black2.PNG';
 import Login from './Login';
 import Signup from './Signup';
