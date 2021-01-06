@@ -1,0 +1,24 @@
+.filterDropDown {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+    background-color: transparent;
+}
+
+.filterDropDown .search-input {
+    display: block;
+    width: 188px;
+    margin-bottom: 8px;
+}
+
+.filterDropDown button {
+    width: 90px;
+}
+
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
