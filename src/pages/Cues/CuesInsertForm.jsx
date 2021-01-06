@@ -1,0 +1,36 @@
+import React from 'react';
+import { Row, Col, Input, Button, Form } from 'antd';
+import './CuesInsertForm.css';
+
+const CuesInsertForm = ({ addCues }) => {
+  const [form] = Form.useForm();
+
+  const handleAdd = () => {
+    form.validateFields()
+        .then((fields) => {
+          const newCues = [...new Set(fields['cues'].split(',').filter((cue) => cue !== ''))];
+          addCues(newCues);
+        }).then(() => form.resetFields());
+  };
+
+  return (
+    <Form form={form} onFinish={handleAdd}>
+      <Row>
+        <Col xs={18} lg={20}>
+          <Form.Item name="cues"
+            rules={[{ required: true, message: 'Cues field cannot be empty' }]}>
+            <Input placeholder="Enter a list of comma separated cues... "/>
+          </Form.Item>
+        </Col>
+
+        <Col xs={{ offset: 1, span: 5 }} lg={{ span: 3 }}>
+          <Form.Item>
+            <Button className="add-button" type='primary' htmlType="submit">Add</Button>
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form>
+  );
+};
+
+export default CuesInsertForm;
