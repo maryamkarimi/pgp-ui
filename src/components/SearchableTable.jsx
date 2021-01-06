@@ -34,7 +34,7 @@ const SearchableTable = ({ title, dataSource, searchIndex, handleDelete }) => {
   const filterData = (data, text) => {
     if (text === '') return data;
     return data.filter(
-        (record) => record[searchIndex].toString().toLowerCase().includes(text),
+        (record) => record[searchIndex].toString().toLowerCase().includes(text.toLowerCase()),
     );
   };
 
