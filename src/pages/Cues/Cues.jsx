@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import SearchableTable from '../../components/SearchableTable';
-import './Cues.css';
+import './Cues.less';
 import CuesInsertForm from './CuesInsertForm';
 
 const Cues = () => {
@@ -75,6 +75,7 @@ const Cues = () => {
           dataSource={cues}
           searchIndex='name'
           handleDelete={deleteCue}
+          textColour='#bfbfbf'
         />
       </Col>
     </Row>

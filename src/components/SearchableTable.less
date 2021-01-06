@@ -1,3 +1,5 @@
+@import "../styles/colours.less";
+
 .searchable-table .ant-table-tbody > tr.ant-table-row:hover > td, .searchable-table .ant-table-tbody > tr.ant-table-placeholder:hover > td {
     background-color: transparent;
 }
@@ -34,23 +36,27 @@
 
 .searchable-table .ant-table {
     background-color: transparent;
-    color: #bfbfbf;
+    color: @nickel-grey;
 }
 
 .searchable-table .ant-pagination, .cue-page .ant-pagination-item-link {
-    color: #bfbfbf;
+    color: @nickel-grey;
 }
 
 .searchable-table .ant-table-thead > tr > th {
     background-color: transparent;
-    border-bottom: 3px double #bfbfbf;
-    color: #bfbfbf;
+    border-bottom: 3px double @nickel-grey;
+    color: @nickel-grey;
 }
 
 .searchable-table .ant-table-tbody > tr > td {
-    border-bottom-color: #bfbfbf;
+    border-bottom-color: @nickel-grey;
 }
 
 .searchable-table .ant-pagination-item-active {
     background: rgba(255, 255, 255, 0.1);
+}
+
+.table-row .ant-input-affix-wrapper {
+  width: 200px;
 }

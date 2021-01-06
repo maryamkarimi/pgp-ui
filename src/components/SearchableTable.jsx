@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table, Input, Popconfirm } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { DeleteOutlined, SearchOutlined } from '@ant-design/icons';
-import './SearchableTable.css';
+import './SearchableTable.less';
 
-const SearchableTable = ({ title, dataSource, searchIndex, handleDelete }) => {
+const SearchableTable = ({ title, dataSource, searchIndex, handleDelete, textColour }) => {
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState();
 
@@ -16,7 +16,7 @@ const SearchableTable = ({ title, dataSource, searchIndex, handleDelete }) => {
     render: (record) =>
       <div className="table-row">
         <Highlighter
-          highlightStyle={{ color: '#bfbfbf', backgroundColor: '#7829ca', padding: 0 }}
+          highlightStyle={{ color: textColour, backgroundColor: '#7829ca', padding: 0 }}
           searchWords={[searchText]}
           autoEscape
           textToHighlight={record[searchIndex] ? record[searchIndex].toString() : ''}
@@ -24,7 +24,7 @@ const SearchableTable = ({ title, dataSource, searchIndex, handleDelete }) => {
         <Popconfirm
           title="Are you sure to delete this item?"
           onConfirm={() => handleDelete(record)}>
-          <Button type="link" icon={<DeleteOutlined style={{ color: '#bfbfbf' }}/>} />
+          <Button type="link" icon={<DeleteOutlined style={{ color: textColour }}/>} />
         </Popconfirm>
       </div>
     ,
@@ -51,7 +51,6 @@ const SearchableTable = ({ title, dataSource, searchIndex, handleDelete }) => {
         <Input
           placeholder="Search..."
           onChange={handleSearch}
-          style={{ width: 200 }}
           prefix={<SearchOutlined/>}
           allowClear
         />
