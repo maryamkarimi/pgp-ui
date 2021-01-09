@@ -12,6 +12,7 @@ plugins:
   - react
 rules: {
   "react/prop-types": 0,
+  "react/display-name": 0,
   "max-len": [2, 100, 4, {"ignoreUrls": true}],
   "object-curly-spacing": ["error", "always"],
   "require-jsdoc": ["error", {
