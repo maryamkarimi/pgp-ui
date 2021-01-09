@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import LoaderButton from '../components/LoaderButton';
+import LoaderButton from '../components/LoaderButton/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
 import './Signup.css';
 import { Auth } from 'aws-amplify';

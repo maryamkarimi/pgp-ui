@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import LoaderButton from '../components/LoaderButton';
+import LoaderButton from '../components/LoaderButton/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
 import './Login.css';
 import { Form, Input } from 'antd';

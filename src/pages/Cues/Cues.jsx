@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
-import SearchableTable from '../../components/SearchableTable';
+import SearchableTable from '../../components/SearchableTable/SearchableTable';
 import './Cues.less';
 import CuesInsertForm from './CuesInsertForm';
 
