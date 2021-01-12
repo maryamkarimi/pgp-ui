@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import LoaderButton from '../components/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
 import './Login.css';
 import { Form, Input } from 'antd';
 import { ADMIN_GROUP, COGNITO_GROUP_FIELD } from '../assets/constants/Constants';
+import LoaderButton from '../components/LoaderButton/LoaderButton';
 
 const Login = () => {
   const { setIsAdmin, userHasAuthenticated } = useAppContext();
