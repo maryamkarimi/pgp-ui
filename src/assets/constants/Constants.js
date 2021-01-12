@@ -1,0 +1,9 @@
+export const ADMIN_HOME = '/admin';
+export const PARTICIPANT_HOME = '/survey';
+export const LOGIN_PAGE = '/';
+
+export const COGNITO_GROUP_FIELD = 'cognito:groups';
+export const ADMIN_GROUP = 'Admin';
+
+export const PAGE_NOT_FOUND_TEXT = 'Sorry, page not found!';
+export const NOT_AUTHORIZED_TEXT = 'Sorry, you don\'t have access to view this page!';
