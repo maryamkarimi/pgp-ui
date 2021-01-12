@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import LoaderButton from '../components/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
 import './Signup.css';
@@ -7,7 +6,6 @@ import { Auth } from 'aws-amplify';
 import { Form, Input } from 'antd';
 
 const Signup = () => {
-  const history = useHistory();
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +45,6 @@ const Signup = () => {
         .then(() => Auth.signIn(userInfo.email, userInfo.password))
         .then(() => {
           userHasAuthenticated(true);
-          history.push('/');
         }).catch((e) => {
           setError(e.message);
           setIsLoading(false);

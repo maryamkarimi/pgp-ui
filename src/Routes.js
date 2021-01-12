@@ -4,7 +4,9 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import Admin from './pages/Admin';
+import AdminRoute from './components/AdminRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
+import Tasks from './pages/Tasks';
 
 const Routes = () => {
   return (
@@ -12,9 +14,12 @@ const Routes = () => {
       <UnauthenticatedRoute exact path="/">
         <Home />
       </UnauthenticatedRoute>
-      <AuthenticatedRoute exact path="/admin">
-        <Admin />
+      <AuthenticatedRoute exact path="/survey">
+        <Tasks/>
       </AuthenticatedRoute>
+      <AdminRoute exact path="/admin">
+        <Admin />
+      </AdminRoute>
       <Route>
         <NotFound />
       </Route>

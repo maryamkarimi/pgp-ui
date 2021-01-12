@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Home.less';
-import logo from '../images/pgp-logo-black2.PNG';
+import logo from '../assets/images/pgp-logo-black2.PNG';
 import Login from './Login';
 import Signup from './Signup';
 import { Row, Col } from 'antd';
