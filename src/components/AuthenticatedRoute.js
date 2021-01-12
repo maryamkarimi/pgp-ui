@@ -28,7 +28,7 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
               <Link to="/">
                 <img src={logo} alt="" className="header-logo" />
               </Link>
-              {isAuthenticated && <Button type='link' ghost onClick={handleLogout}>Log out</Button>}
+              {isAuthenticated && <Button type='link' onClick={handleLogout}>Log out</Button>}
             </Header>
             {children}
           </>
