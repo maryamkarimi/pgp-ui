@@ -6,9 +6,9 @@ import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import Admin from './pages/Admin';
 import AdminRoute from './components/AdminRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
-import Tasks from './pages/Tasks';
 import Cues from './pages/Cues/Cues';
 import Images from './pages/Images/Images';
+import Tasks from './pages/Tasks/Tasks';
 
 const Routes = () => {
   return (
