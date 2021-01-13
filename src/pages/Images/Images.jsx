@@ -46,8 +46,12 @@ const Images = () => {
       { id: 6, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
       { id: 7, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
       { id: 8, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' },
-      { id: 9, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' },
-      { id: 10, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' }],
+      { id: 9, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
+      { id: 10, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
+      { id: 11, url: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png' },
+      { id: 12, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
+      { id: 13, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
+      { id: 14, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' }],
     );
   }, []);
 
@@ -68,8 +72,8 @@ const Images = () => {
           </div>
           <List
             className="images-list"
-            grid={{ gutter: 24, xs: 2, sm: 2, md: 2, lg: 4, xl: 4, xxl: 4 }}
-            pagination={{ size: 'small', pageSize: 8, hideOnSinglePage: true }}
+            grid={{ gutter: 24, xs: 1, sm: 2, md: 2, lg: 4, xl: 4, xxl: 4 }}
+            pagination={{ size: 'small', pageSize: 12, hideOnSinglePage: true }}
             dataSource={images}
             renderItem={(item) => (
               <List.Item>

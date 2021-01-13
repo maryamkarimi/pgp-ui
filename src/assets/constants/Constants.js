@@ -1,4 +1,6 @@
 export const ADMIN_HOME = '/admin';
+export const ADMIN_IMAGES = '/admin/images';
+export const ADMIN_CUES = '/admin/cues';
 export const PARTICIPANT_HOME = '/survey';
 export const LOGIN_PAGE = '/';
 
