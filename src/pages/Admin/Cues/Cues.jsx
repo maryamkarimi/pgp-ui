@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import CuesInsertForm from './CuesInsertForm';
-import SearchableTable from '../../components/SearchableTable/SearchableTable';
+import SearchableTable from '../../../components/SearchableTable/SearchableTable';
 import './Cues.less';
+import { EditableCell, EditableRow } from '../../../components/Editable';
 
 const Cues = () => {
   // to be replaced with API call
@@ -32,15 +33,44 @@ const Cues = () => {
 
   const deleteCue = (record) => {
     // make an API call to delete, if successful do next line
-    setCues((currentCues) => currentCues.filter((currRecord) => currRecord !== record));
+    setCues((currentCues) => currentCues.filter((currRecord) => currRecord['id'] !== record['id']));
+  };
+
+  const updateCue = (record, newValue) => {
+    // make an API call to update
+    setCues(
+        cues.map((cue) =>
+            cue.id === record['id'] ?
+                { ...record, name: newValue['name'] }:
+                cue,
+        ));
   };
 
   const addCues = (newCues) => {
     // make an API call to add all the above cues, once added, update the state too
     newCues.forEach((newCue) => {
-      setCues((currCues) => [{ id: 1, name: newCue }, ...currCues]);
+      setCues((currCues) => [{ id: 100, name: newCue }, ...currCues]);
     });
   };
+
+  const components = {
+    body: {
+      row: EditableRow,
+      cell: EditableCell,
+    },
+  };
+
+  const getEditSearchProps = () => ({
+    onCell: (record) => ({
+      record,
+      editable: true,
+      dataIndex: 'name',
+      iconColour: '#bfbfbf',
+      title: 'Cue Name',
+      handleDelete: deleteCue,
+      handleSave: updateCue,
+    }),
+  });
 
   return (
     <Row className="cue-page">
@@ -50,11 +80,12 @@ const Cues = () => {
           title='Cue Name'
           dataSource={cues}
           searchIndex='name'
-          handleDelete={deleteCue}
+          columnProps={getEditSearchProps()}
           textColour='#bfbfbf'
           size='small'
           pagination={{ pageSize: 16 }}
           rowKey='id'
+          components={components}
         />
       </Col>
     </Row>

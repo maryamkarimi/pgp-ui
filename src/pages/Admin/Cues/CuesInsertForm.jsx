@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Input, Button, Form } from 'antd';
 import './CuesInsertForm.css';
+import { CUE_SEPARATOR } from '../../../assets/constants/Constants';
 
 const CuesInsertForm = ({ addCues }) => {
   const [form] = Form.useForm();
@@ -8,7 +9,7 @@ const CuesInsertForm = ({ addCues }) => {
   const handleAdd = () => {
     form.validateFields()
         .then((fields) => {
-          const newCues = [...new Set(fields['cues'].split(',').filter((cue) => cue !== ''))];
+          const newCues = new Set(fields['cues'].split(CUE_SEPARATOR).filter((cue) => cue !== ''));
           addCues(newCues);
         }).then(() => form.resetFields());
   };
@@ -19,7 +20,9 @@ const CuesInsertForm = ({ addCues }) => {
         <Col xs={18} lg={20}>
           <Form.Item name="cues"
             rules={[{ required: true, message: 'Cues field cannot be empty' }]}>
-            <Input placeholder="Enter a list of comma separated cues... "/>
+            <Input className="add-cue-input"
+              placeholder={`Enter a list of ${CUE_SEPARATOR} separated cues...`}
+            />
           </Form.Item>
         </Col>
 

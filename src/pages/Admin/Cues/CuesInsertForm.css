@@ -4,5 +4,8 @@
     border: none;
     outline: none;
     color: white;
+}
+
+.add-cue-input, .add-button {
     letter-spacing: 1px;
 }
