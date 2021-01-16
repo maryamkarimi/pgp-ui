@@ -20,7 +20,9 @@ const CuesInsertForm = ({ addCues }) => {
         <Col xs={18} lg={20}>
           <Form.Item name="cues"
             rules={[{ required: true, message: 'Cues field cannot be empty' }]}>
-            <Input placeholder={`Enter a list of ${CUE_SEPARATOR} separated cues...`}/>
+            <Input className="add-cue-input"
+              placeholder={`Enter a list of ${CUE_SEPARATOR} separated cues...`}
+            />
           </Form.Item>
         </Col>
 
