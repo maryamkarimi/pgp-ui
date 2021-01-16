@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import CuesInsertForm from './CuesInsertForm';
-import SearchableTable from '../../components/SearchableTable/SearchableTable';
+import SearchableTable from '../../../components/SearchableTable/SearchableTable';
 import './Cues.less';
 
 const Cues = () => {
