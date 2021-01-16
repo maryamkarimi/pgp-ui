@@ -1,0 +1,62 @@
+@import "src/styles/colours.less";
+
+.searchable-table .ant-table-tbody > tr.ant-table-row:hover > td, .searchable-table .ant-table-tbody > tr.ant-table-placeholder:hover > td {
+    background-color: transparent;
+}
+
+.searchable-table .table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchable-table .table-row .ant-input-affix-wrapper {
+    padding: 0 10px;
+}
+
+.searchable-table .table-row .ant-input-clear-icon, .searchable-table .ant-empty-description  {
+    color: white;
+}
+
+.searchable-table thead th .ant-table-cell {
+    padding: 0;
+}
+
+.searchable-table .ant-table.ant-table-small .ant-table-thead > tr > th {
+    padding: 8px 0;
+}
+
+.searchable-table .table-row .ant-input-prefix {
+    padding-right: 5px;
+}
+
+.searchable-table .table-row input {
+    height: 35px;
+}
+
+.searchable-table .ant-table {
+    background-color: transparent;
+    color: @nickel-grey;
+}
+
+.searchable-table .ant-pagination, .cue-page .ant-pagination-item-link {
+    color: @nickel-grey;
+}
+
+.searchable-table .ant-table-thead > tr > th {
+    background-color: transparent;
+    border-bottom: 3px double @nickel-grey;
+    color: @nickel-grey;
+}
+
+.searchable-table .ant-table-tbody > tr > td {
+    border-bottom-color: @nickel-grey;
+}
+
+.searchable-table .ant-pagination-item-active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.table-row .ant-input-affix-wrapper {
+  width: 200px;
+}
