@@ -4,7 +4,7 @@ import Highlighter from 'react-highlight-words';
 import { DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import './SearchableTable.less';
 
-const SearchableTable = ({ title, dataSource, searchIndex, handleDelete, textColour }) => {
+const SearchableTable = ({ title, dataSource, searchIndex, handleDelete, textColour, ...rest }) => {
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState();
 
@@ -64,7 +64,12 @@ const SearchableTable = ({ title, dataSource, searchIndex, handleDelete, textCol
   ];
 
   return (
-    <Table className="searchable-table" columns={columns} dataSource={filteredData} size='small'/>
+    <Table
+      className="searchable-table"
+      columns={columns}
+      dataSource={filteredData}
+      {...rest}
+    />
   );
 };
 

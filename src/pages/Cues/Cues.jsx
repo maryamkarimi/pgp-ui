@@ -1,57 +1,33 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
-import './Cues.less';
 import CuesInsertForm from './CuesInsertForm';
 import SearchableTable from '../../components/SearchableTable/SearchableTable';
+import './Cues.less';
 
 const Cues = () => {
   // to be replaced with API call
   const [cues, setCues] = useState([
     { id: 1, name: 'Cue 1' },
-    { id: 1, name: 'Cue 2' },
-    { id: 1, name: 'Cue 3' },
-    { id: 1, name: 'Cue 4' },
-    { id: 1, name: 'Cue 5' },
-    { id: 1, name: 'Cue 6' },
-    { id: 1, name: 'Cue 7' },
-    { id: 1, name: 'Cue 8' },
-    { id: 1, name: 'Cue 9' },
-    { id: 1, name: 'Cue 10' },
-    { id: 1, name: 'Cue 11' },
-    { id: 1, name: 'Cue 12' },
-    { id: 1, name: 'Cue 13' },
-    { id: 1, name: 'Cue 20' },
-    { id: 1, name: 'Cue 21' },
-    { id: 1, name: 'Cue 22' },
-    { id: 1, name: 'Cue 23' },
-    { id: 1, name: 'Cue 30' },
-    { id: 1, name: 'Cue 31' },
-    { id: 1, name: 'Cue 32' },
-    { id: 1, name: 'Cue 33' },
-    { id: 1, name: 'Cue 40' },
-    { id: 1, name: 'Cue 41' },
-    { id: 1, name: 'Cue 42' },
-    { id: 1, name: 'Cue 43' },
-    { id: 1, name: 'Cue 50' },
-    { id: 1, name: 'Cue 51' },
-    { id: 1, name: 'Cue 52' },
-    { id: 1, name: 'Cue 53' },
-    { id: 1, name: 'Cue 60' },
-    { id: 1, name: 'Cue 61' },
-    { id: 1, name: 'Cue 62' },
-    { id: 1, name: 'Cue 63' },
-    { id: 1, name: 'Cue 70' },
-    { id: 1, name: 'Cue 71' },
-    { id: 1, name: 'Cue 72' },
-    { id: 1, name: 'Cue 73' },
-    { id: 1, name: 'Cue 80' },
-    { id: 1, name: 'Cue 81' },
-    { id: 1, name: 'Cue 82' },
-    { id: 1, name: 'Cue 83' },
-    { id: 1, name: 'Cue 90' },
-    { id: 1, name: 'Cue 91' },
-    { id: 1, name: 'Cue 92' },
-    { id: 1, name: 'Cue 93' },
+    { id: 2, name: 'Cue 2' },
+    { id: 3, name: 'Cue 3' },
+    { id: 4, name: 'Cue 4' },
+    { id: 5, name: 'Cue 5' },
+    { id: 6, name: 'Cue 6' },
+    { id: 7, name: 'Cue 7' },
+    { id: 8, name: 'Cue 8' },
+    { id: 9, name: 'Cue 9' },
+    { id: 10, name: 'Cue 10' },
+    { id: 11, name: 'Cue 11' },
+    { id: 12, name: 'Cue 12' },
+    { id: 13, name: 'Cue 13' },
+    { id: 14, name: 'Cue 14' },
+    { id: 15, name: 'Cue 15' },
+    { id: 16, name: 'Cue 16' },
+    { id: 17, name: 'Cue 17' },
+    { id: 18, name: 'Cue 18' },
+    { id: 19, name: 'Cue 19' },
+    { id: 20, name: 'Cue 20' },
+    { id: 21, name: 'Cue 21' },
   ]);
 
   const deleteCue = (record) => {
@@ -76,6 +52,9 @@ const Cues = () => {
           searchIndex='name'
           handleDelete={deleteCue}
           textColour='#bfbfbf'
+          size='small'
+          pagination={{ pageSize: 16 }}
+          rowKey='id'
         />
       </Col>
     </Row>

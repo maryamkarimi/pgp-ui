@@ -1,7 +1,32 @@
+@import "../../styles/colours.less";
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header .header-text {
+  display: flex;
+  flex-direction:row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  width: 180px;
+  letter-spacing: 0.5px;
+  color: @nickel-grey;
+}
+
+.header .header-text a, .header .header-text button {
+  color: @nickel-grey;
+}
+
+.header .header-text a:hover, .header .header-text button:hover {
+  color: lighten(@primary-color, 10);
+}
+
+.header .header-text .ant-btn {
+  padding: 0;
 }
 
 .ant-layout-header {
@@ -9,6 +34,10 @@
   padding: 0 10px;
 }
 
-.header-logo {
+.header .header-logo {
   width: 150px;
+}
+
+.header .separator {
+  color: grey;
 }

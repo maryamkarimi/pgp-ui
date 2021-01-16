@@ -1,0 +1,70 @@
+@import "src/styles/colours.less";
+
+.admin-images-page {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 20px;
+  background: radial-gradient(ellipse at left bottom,
+  rgba(22, 24, 47, 1) 0%,
+  rgba(38, 20, 72, 0.9) 59%,
+  rgba(17, 27, 75, 0.9) 100%);
+}
+
+.admin-images-page .ant-card-body {
+  padding: 0;
+}
+
+.admin-images-page .ant-card-actions > li {
+  margin: 0 0 5px;
+}
+
+.admin-images-page .ant-pagination, .admin-images-page .ant-pagination-item-link {
+  color: @nickel-grey;
+}
+
+.admin-images-page .ant-pagination-item-active, .admin-images-page .ant-pagination-item  {
+  background: @white-with-opacity;
+}
+
+.admin-images-page .ant-card {
+  background-color: transparent;
+}
+
+.admin-images-page  .ant-card-actions {
+  background: @white-with-opacity;
+  border: none;
+}
+
+.admin-images-page .anticon {
+  color: @nickel-grey !important;
+}
+
+.admin-images-page .ant-upload.ant-upload-drag {
+  background: @white-with-opacity;
+  border: 1px dotted @nickel-grey;
+}
+
+.admin-images-page .ant-upload.ant-upload-drag p.ant-upload-text, .ant-upload.ant-upload-drag p.ant-upload-hint {
+  color: #d9d9d9;
+}
+
+.admin-images-page img {
+  object-fit: cover;
+}
+
+.admin-images-page .ant-image {
+  display: flex;
+  height: 200px;
+}
+
+.admin-images-page .ant-card-bordered {
+  border: 1px dotted @nickel-grey;
+}
+
+.admin-images-page .images-list {
+  padding-top: 20px;
+}
+
+.admin-images-page .ant-list-pagination {
+  margin-top: 0;
+}

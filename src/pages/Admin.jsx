@@ -1,11 +1,9 @@
 import React from 'react';
-import Cues from './Cues/Cues';
+import Images from './Images/Images';
 
 const Admin = () => {
   return (
-    <>
-      <Cues/>
-    </>
+    <Images/>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import LoaderButton from '../components/LoaderButton/LoaderButton';
 import { useAppContext } from '../libs/contextLib';
 import './Signup.css';
 import { Auth } from 'aws-amplify';
 import { Form, Input } from 'antd';
-import LoaderButton from '../components/LoaderButton/LoaderButton';
 
 const Signup = () => {
   const [newUser, setNewUser] = useState(null);
