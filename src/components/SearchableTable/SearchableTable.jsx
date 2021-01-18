@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Input } from 'antd';
+import { Table, Input, Row, Col } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import './SearchableTable.less';
@@ -44,16 +44,21 @@ const SearchableTable = ({
   };
 
   const titleRow =
-      <div className="table-row">
-        {title}
-        <Input
-          className="search-box"
-          placeholder="Search..."
-          onChange={handleSearch}
-          prefix={<SearchOutlined/>}
-          allowClear
-        />
-      </div>;
+      <Row className="title-row">
+        <Col xs={19} lg={20} className="table-row">
+          {title}
+          <Input
+            className="search-box"
+            placeholder="Search..."
+            onChange={handleSearch}
+            prefix={<SearchOutlined/>}
+            allowClear
+          />
+        </Col>
+        <Col xs={{ offset: 1, span: 4 }} lg={{ span: 3 }} className="switch-title">
+              Active
+        </Col>
+      </Row>;
 
   const columns = [
     {

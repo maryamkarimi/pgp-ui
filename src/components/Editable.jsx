@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Input, Form, Button, Popconfirm } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
-import './EditableCell.less';
+import { Input, Form, Switch, Col, Row } from 'antd';
+import './Editable.less';
+import { CUE_ACTIVE_FIELD, CUE_NAME_FIELD } from '../assets/constants/Constants';
 
 const EditableContext = React.createContext(null);
 
@@ -43,11 +43,11 @@ export const EditableCell = ({
     });
   };
 
-  const save = () => {
+  const saveName = () => {
     form.validateFields()
         .then((values) => {
           if (record[dataIndex] !== values[dataIndex]) {
-            handleSave(record, values);
+            handleSave(record, values, CUE_NAME_FIELD);
           }
           toggleEdit();
         }).catch((errorInfo) => {
@@ -55,38 +55,41 @@ export const EditableCell = ({
         });
   };
 
-  let childNode = children;
+  const saveActive = () => {
+    handleSave(record, { active: !record[CUE_ACTIVE_FIELD] }, CUE_ACTIVE_FIELD);
+  };
 
-  if (editable) {
-    childNode = editing ? (
-        <Form.Item
-          style={{ margin: 0 }}
-          name={dataIndex}
-          rules={[
-            {
-              required: true,
-              message: `${title} is required.`,
-            },
-          ]}
-        >
-          <Input ref={inputRef} onPressEnter={save} onBlur={save}/>
-        </Form.Item>
-    ):(
-        <div className="editable-cell-value-wrap" onClick={toggleEdit}>
-          {children}
-        </div>
-    );
-  }
+  const editableCell =
+        <Row className="table-row editable-cell">
+          <Col xs={19} lg={20}>
+            { editing ?
+                <Form.Item
+                  style={{ margin: 0 }}
+                  name={dataIndex}
+                  rules={[
+                    {
+                      required: true,
+                      message: `${title} is required.`,
+                    },
+                  ]}
+                >
+                  <Input ref={inputRef} onPressEnter={saveName} onBlur={saveName}/>
+                </Form.Item> :
+                <span className="editable-cell-value-wrap" onClick={toggleEdit}>
+                  {children}
+                </span>
+            }
+          </Col>
+          <Col className="switch-section" xs={{ offset: 1, span: 4 }} lg={{ span: 3 }}>
+            <Switch
+              checked={record == null ? true : record[CUE_ACTIVE_FIELD]} onChange={saveActive}
+            />
+          </Col>
+        </Row>;
 
   return (
     <td {...restProps}>
-      <div className="table-row">
-        {childNode}
-        <Popconfirm
-          title="Are you sure to delete this item?" onConfirm={() => handleDelete(record)}>
-          <Button type="link" icon={<DeleteOutlined style={{ color: iconColour }}/>} />
-        </Popconfirm>
-      </div>
+      {editable ? editableCell : children }
     </td>
   );
 };
