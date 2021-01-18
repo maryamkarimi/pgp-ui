@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
-import Admin from './pages/Admin';
+import Admin from './pages/Admin/Admin';
 import AdminRoute from './components/AdminRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
-import Cues from './pages/Cues/Cues';
-import Images from './pages/Images/Images';
 import Tasks from './pages/Tasks/Tasks';
+import Cues from './pages/Admin/Cues/Cues';
+import Images from './pages/Admin/Images/Images';
 
 const Routes = () => {
   return (

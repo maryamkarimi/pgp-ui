@@ -10,6 +10,15 @@
     align-items: center;
 }
 
+.searchable-table .title-row {
+  align-items: center;
+}
+
+.searchable-table .switch-title {
+  display: flex;
+  justify-content: space-around;
+}
+
 .searchable-table .table-row .ant-input-affix-wrapper {
     padding: 0 10px;
 }
@@ -18,12 +27,8 @@
     color: white;
 }
 
-.searchable-table thead th .ant-table-cell {
-    padding: 0;
-}
-
-.searchable-table .ant-table.ant-table-small .ant-table-thead > tr > th {
-    padding: 8px 0;
+.ant-table.ant-table-small .ant-table-title, .ant-table.ant-table-small .ant-table-footer, .ant-table.ant-table-small .ant-table-thead > tr > th, .ant-table.ant-table-small .ant-table-tbody > tr > td, .ant-table.ant-table-small tfoot > tr > th, .ant-table.ant-table-small tfoot > tr > td {
+    padding-right: 0;
 }
 
 .searchable-table .table-row .ant-input-prefix {
@@ -31,7 +36,7 @@
 }
 
 .searchable-table .table-row input {
-    height: 35px;
+    height: 32px;
 }
 
 .searchable-table .ant-table {
@@ -57,6 +62,10 @@
     background: @white-with-opacity;
 }
 
-.table-row .ant-input-affix-wrapper {
-  width: 200px;
+.table-row .ant-input-affix-wrapper, .ant-table-tbody input {
+  width: 250px;
+}
+
+.search-box input {
+  letter-spacing: 1px;
 }
