@@ -10,6 +10,15 @@
     align-items: center;
 }
 
+.searchable-table .title-row {
+  align-items: center;
+}
+
+.searchable-table .switch-title {
+  display: flex;
+  justify-content: space-around;
+}
+
 .searchable-table .table-row .ant-input-affix-wrapper {
     padding: 0 10px;
 }
@@ -18,7 +27,7 @@
     color: white;
 }
 
-.searchable-table .ant-table.ant-table-small .ant-table-thead > tr > th {
+.ant-table.ant-table-small .ant-table-title, .ant-table.ant-table-small .ant-table-footer, .ant-table.ant-table-small .ant-table-thead > tr > th, .ant-table.ant-table-small .ant-table-tbody > tr > td, .ant-table.ant-table-small tfoot > tr > th, .ant-table.ant-table-small tfoot > tr > td {
     padding-right: 0;
 }
 
@@ -53,8 +62,8 @@
     background: @white-with-opacity;
 }
 
-.table-row .ant-input-affix-wrapper {
-  width: 200px;
+.table-row .ant-input-affix-wrapper, .ant-table-tbody input {
+  width: 250px;
 }
 
 .search-box input {

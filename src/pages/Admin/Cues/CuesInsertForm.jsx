@@ -17,7 +17,7 @@ const CuesInsertForm = ({ addCues }) => {
   return (
     <Form form={form} onFinish={handleAdd}>
       <Row>
-        <Col xs={18} lg={20}>
+        <Col xs={19} lg={20}>
           <Form.Item name="cues"
             rules={[{ required: true, message: 'Cues field cannot be empty' }]}>
             <Input className="add-cue-input"
@@ -26,7 +26,7 @@ const CuesInsertForm = ({ addCues }) => {
           </Form.Item>
         </Col>
 
-        <Col xs={{ offset: 1, span: 5 }} lg={{ span: 3 }}>
+        <Col xs={{ offset: 1, span: 4 }} lg={{ span: 3 }}>
           <Form.Item>
             <Button className="add-button" type='primary' htmlType="submit">Add</Button>
           </Form.Item>
