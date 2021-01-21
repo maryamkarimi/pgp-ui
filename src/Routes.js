@@ -6,7 +6,7 @@ import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import Admin from './pages/Admin/Admin';
 import AdminRoute from './components/AdminRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
-import Tasks from './pages/Tasks';
+import Tasks from './pages/Tasks/Tasks';
 import Cues from './pages/Admin/Cues/Cues';
 import Images from './pages/Admin/Images/Images';
 
