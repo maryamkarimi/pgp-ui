@@ -1,5 +1,4 @@
 import React from 'react';
-import './NotFound.css';
 import { NOT_AUTHORIZED_TEXT } from '../assets/constants/Constants';
 
 const NotAuthorized = () => {

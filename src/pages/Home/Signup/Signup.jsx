@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import LoaderButton from '../components/LoaderButton/LoaderButton';
-import { useAppContext } from '../libs/contextLib';
+import LoaderButton from '../../../components/LoaderButton/LoaderButton';
+import { useAppContext } from '../../../libs/contextLib';
 import './Signup.css';
 import { Auth } from 'aws-amplify';
 import { Form, Input } from 'antd';
+import SignupForm from './SignupForm';
 
-const Signup = () => {
+const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +24,7 @@ const Signup = () => {
   };
 
   const handleSignupSubmit = (fields) => {
+    // TODO: Call API
     setIsLoading(true);
 
     Auth.signUp({
@@ -51,50 +53,14 @@ const Signup = () => {
         });
   };
 
-  const signUpFields = () =>
-    <>
-      <label>Email</label>
-      <Form.Item name='email' rules={[{ required: true, type: 'email' }]}>
-        <Input />
-      </Form.Item>
-
-      <label>Password</label>
-      <Form.Item name='password' rules={[{ required: true }]}>
-        <Input.Password />
-      </Form.Item>
-
-      <label>Confirm Password</label>
-      <Form.Item name='confirmPassword' dependencies={['password']} rules={[
-        {
-          required: true,
-        },
-        ({ getFieldValue }) => ({
-          validator(_, value) {
-            if (!value || getFieldValue('password') === value) {
-              return Promise.resolve();
-            }
-            return Promise.reject(new Error('The two passwords that you entered do not match!'));
-          },
-        }),
-      ]}>
-        <Input.Password />
-      </Form.Item>
-
-      {/* add sex, age, etc*/}
-    </>;
-
   const confirmationFields = () =>
-    <>
-      <label>Confirmation Code</label>
-      <Form.Item name='confirmationCode' rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-    </>;
+    <Form.Item label='Confirmation Code' name='confirmationCode' rules={[{ required: true }]}>
+      <Input />
+    </Form.Item>;
 
   return (
-    <Form style={{ width: '100%' }} form={form} onFinish={handleSubmit}>
-
-      {newUser === null ? signUpFields() : confirmationFields()}
+    <Form className="login-form" layout="vertical" form={form} onFinish={handleSubmit}>
+      {newUser === null ? <SignupForm xsSpan={xsSpan} xlSpan={xlSpan}/> : confirmationFields()}
 
       <Form.Item>
         <LoaderButton
@@ -107,8 +73,10 @@ const Signup = () => {
           {newUser === null ? 'Sign up' : 'Verify'}
         </LoaderButton>
       </Form.Item>
-
       <div className="errorMsg">{error}</div>
+      <p>
+        {footer}
+      </p>
     </Form>
   );
 };
