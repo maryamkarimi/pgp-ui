@@ -30,7 +30,7 @@ const Home = () => {
       </div>
 
       <Col xs={{ offset: 2, span: 20 }} md={{ offset: 3, span: 18 }} className="loginContainer">
-        <Row style={{ width: '100%' }}>
+        <Row>
           <Col
             xs={{ offset: 2, span: 20 }}
             xl={{ offset: 1, span: 22 }}
