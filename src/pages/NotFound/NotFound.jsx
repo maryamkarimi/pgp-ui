@@ -1,6 +1,6 @@
 import React from 'react';
 import './NotFound.css';
-import { PAGE_NOT_FOUND_TEXT } from '../assets/constants/Constants';
+import { PAGE_NOT_FOUND_TEXT } from '../../assets/constants/Constants';
 
 const NotFound = () => {
   return (

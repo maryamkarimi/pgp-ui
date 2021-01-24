@@ -1,0 +1,13 @@
+.errorMsg {
+    color: #ff4d4f;
+    font-size: 14px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.video-iframe {
+    width: 100%;
+    min-height: 300px;
+}

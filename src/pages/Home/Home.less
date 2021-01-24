@@ -1,0 +1,159 @@
+@import "src/styles/colours.less";
+
+.login .login-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  padding: 10px;
+}
+
+.login {
+  width: 100%;
+  min-height: 100vh;
+  background: @header-colour;
+}
+
+.login .loginContainer {
+  justify-content: center;
+  background: radial-gradient(ellipse at left bottom,
+  rgba(22, 24, 47, 1) 0%,
+  rgba(38, 20, 72, 0.9) 59%,
+  rgba(17, 27, 75, 0.9) 100%);
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+  padding: 20px 0 5px;
+}
+
+.login .loginContainer label {
+  float: left;
+  color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.login .loginContainer .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  font-size: 20px;
+  margin-left: 4px;
+}
+
+.login .loginContainer button {
+  border: none;
+  height: 50px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #603bbb;
+}
+
+.ant-input-affix-wrapper input, .ant-input-number-input-wrap input {
+  background-color: transparent !important;
+}
+
+.login .loginContainer .ant-input-affix-wrapper {
+  border-color: transparent;
+  padding: 0;
+}
+
+.login .loginContainer .ant-input-suffix {
+  padding-right: 10px;
+}
+
+.login .loginContainer .ant-form-item-has-error .ant-input,
+.login .loginContainer .ant-form-item-has-error .ant-input-affix-wrapper,
+.login .loginContainer .ant-form-item-has-error .ant-input:hover,
+.login .loginContainer .ant-form-item-has-error .ant-input-affix-wrapper:hover,
+.login .loginContainer .ant-form-item-has-error .ant-input-number:not([disabled]):hover,
+.login .loginContainer .ant-form-item-has-error .ant-picker:not([disabled]):hover,
+.login .loginContainer .ant-form-item-has-error .ant-input-number,
+.login .loginContainer .ant-form-item-has-error .ant-picker {
+  background-color: @white-with-opacity;
+}
+
+.login .loginContainer input,
+.ant-input-affix-wrapper {
+  border-color: transparent;
+  font-size: 19px;
+  padding: 10px;
+  background: @white-with-opacity;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.login .loginContainer .ant-input-number, .login .loginContainer .ant-select {
+  width: 100%;
+  border-color: transparent;
+  font-size: 19px;
+  padding: 10px 10px 9px 0;
+  background: @white-with-opacity;
+  color: #fff;
+  letter-spacing: 1px;
+  border-radius: 2px;
+}
+
+.login .loginContainer .video {
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.login .loginContainer .btnContainer {
+  width: 100%;
+}
+
+.login .loginContainer .btnContainer p {
+  color: #fff;
+}
+
+.login .loginContainer .btnContainer p span {
+  color: yellow;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all 400ms ease-in-out;
+}
+
+.login .loginContainer .btnContainer p span:hover {
+  color: red;
+}
+
+.login .loginContainer .ant-input-number-handler-wrap, .login .loginContainer .ant-input-number-handler-down {
+  border-color: @primary-color;
+}
+
+.login .loginContainer .anticon {
+  color: @nickel-grey;
+}
+
+.login .loginContainer .ant-input-number-handler-wrap {
+  background-color: @nickel-grey;
+}
+
+.login .loginContainer .ant-input-number-handler-down-inner, .login .loginContainer  .ant-input-number-handler-up-inner {
+  color: @primary-color !important;
+}
+
+.login .loginContainer .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+}
+
+.login .loginContainer .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+  box-shadow: none;
+}
+
+.login .loginContainer .ant-select-multiple .ant-select-selection-item {
+  background-color: @primary-color;
+  border: none;
+}
+
+.login .loginContainer .ant-select-selection-search-input {
+  font-size: 14px !important;
+}
+
+.space-between-row {
+  justify-content: space-between;
+}

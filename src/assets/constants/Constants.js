@@ -17,3 +17,5 @@ export const CUE_NAME_FIELD = 'name';
 export const CUE_ID_FIELD = 'id';
 export const CUE_ACTIVE_FIELD = 'active';
 
+// Maximum number of nationalities one can select
+export const MAX_NATIONALITY = 3;
