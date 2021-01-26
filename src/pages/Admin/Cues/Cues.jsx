@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import CuesInsertForm from './CuesInsertForm';
 import SearchableTable from '../../../components/SearchableTable/SearchableTable';
-import './Cues.less';
 import { EditableCell, EditableRow } from '../../../components/Editable';
 import { CUE_ID_FIELD, CUE_NAME_FIELD } from '../../../assets/constants/Constants';
+import './Cues.less';
 
 const Cues = () => {
-  // to be replaced with API call
   const [cues, setCues] = useState([
-    { id: 1, name: 'Cue 1', active: true },
-    { id: 2, name: 'Cue 2', active: false },
-    { id: 3, name: 'Cue 3', active: true },
-    { id: 4, name: 'Cue 4', active: true },
-    { id: 5, name: 'Cue 5', active: false },
-    { id: 6, name: 'Cue 6', active: true },
-    { id: 7, name: 'Cue 7', active: false },
-    { id: 8, name: 'Cue 8', active: true },
-    { id: 9, name: 'Cue 9', active: true },
-    { id: 10, name: 'Cue 10', active: true },
-    { id: 11, name: 'Cue 11', active: true },
-    { id: 12, name: 'Cue 12', active: true },
-    { id: 13, name: 'Cue 13', active: true },
-    { id: 14, name: 'Cue 14', active: true },
-    { id: 15, name: 'Cue 15', active: true },
-    { id: 16, name: 'Cue 16', active: true },
-    { id: 17, name: 'Cue 17', active: true },
-    { id: 18, name: 'Cue 18', active: true },
-    { id: 19, name: 'Cue 19', active: true },
-    { id: 20, name: 'Cue 20', active: true },
-    { id: 21, name: 'Cue 21', active: true },
+    { id: 1, cueText: 'Cue 1', isActive: true },
+    { id: 2, cueText: 'Cue 2', isActive: false },
+    { id: 3, cueText: 'Cue 3', isActive: true },
+    { id: 4, cueText: 'Cue 4', isActive: true },
+    { id: 5, cueText: 'Cue 5', isActive: false },
+    { id: 6, cueText: 'Cue 6', isActive: true },
+    { id: 7, cueText: 'Cue 7', isActive: false },
+    { id: 8, cueText: 'Cue 8', isActive: true },
+    { id: 9, cueText: 'Cue 9', isActive: true },
+    { id: 10, cueText: 'Cue 10', isActive: true },
+    { id: 11, cueText: 'Cue 11', isActive: true },
+    { id: 12, cueText: 'Cue 12', isActive: true },
+    { id: 13, cueText: 'Cue 13', isActive: true },
+    { id: 14, cueText: 'Cue 14', isActive: true },
+    { id: 15, cueText: 'Cue 15', isActive: true },
+    { id: 16, cueText: 'Cue 16', isActive: true },
+    { id: 17, cueText: 'Cue 17', isActive: true },
+    { id: 18, cueText: 'Cue 18', isActive: true },
+    { id: 19, cueText: 'Cue 19', isActive: true },
+    { id: 20, cueText: 'Cue 20', isActive: true },
+    { id: 21, cueText: 'Cue 21', isActive: true },
   ]);
+
+  // to be replaced with API call
+  useEffect(() => {
+  }, []);
 
   const updateCue = (record, newValue, updatedField) => {
     // make an API call to update
@@ -45,7 +48,7 @@ const Cues = () => {
   const addCues = (newCues) => {
     // make an API call to add all the above cues, once added, update the state too
     newCues.forEach((newCue) => {
-      setCues((currCues) => [{ id: 100, name: newCue }, ...currCues]);
+      setCues((currCues) => [{ id: 100, cueText: newCue }, ...currCues]);
     });
   };
 
