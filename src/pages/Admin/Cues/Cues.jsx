@@ -36,7 +36,7 @@ const Cues = () => {
     // make an API call to update
     setCues(
         cues.map((cue) =>
-            cue.id === record['id'] ?
+            cue[CUE_ID_FIELD] === record[CUE_ID_FIELD] ?
                 { ...record, [updatedField]: newValue[updatedField] }:
                 cue,
         ));

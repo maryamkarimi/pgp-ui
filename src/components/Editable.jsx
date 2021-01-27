@@ -56,7 +56,7 @@ export const EditableCell = ({
   };
 
   const saveActive = () => {
-    handleSave(record, { active: !record[CUE_ACTIVE_FIELD] }, CUE_ACTIVE_FIELD);
+    handleSave(record, { [CUE_ACTIVE_FIELD]: !record[CUE_ACTIVE_FIELD] }, CUE_ACTIVE_FIELD);
   };
 
   const editableCell =
