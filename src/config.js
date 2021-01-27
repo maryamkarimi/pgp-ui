@@ -4,7 +4,8 @@ const config = {
     BUCKET: 'YOUR_S3_UPLOADS_BUCKET_NAME',
   },
   apiGateway: {
-    REGION: 'YOUR_API_GATEWAY_REGION',
+    NAME: 'pgp',
+    REGION: 'us-east-2',
     URL: 'YOUR_API_GATEWAY_URL',
   },
   cognito: {
