@@ -1,9 +1,8 @@
 import React from 'react';
 
-const IdentificationTask = ({ task }) => {
+const IdentificationTask = ({ task, handleSubmit }) => {
   return (
     <>
-      {task['question']}
     </>
   );
 };

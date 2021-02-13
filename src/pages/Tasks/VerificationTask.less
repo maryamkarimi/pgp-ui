@@ -1,0 +1,38 @@
+.verification-icons {
+  justify-content: center;
+}
+
+.no-icon {
+  color: #ec4646;
+  padding-right: 5px;
+}
+
+.yes-icon {
+  color: #5aa469;
+}
+
+.no-animate {
+  animation: rotate-counter-clockwise 1s infinite;
+}
+
+.yes-animate {
+  animation: rotate-clockwise 1s infinite;
+}
+
+@keyframes rotate-clockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-counter-clockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

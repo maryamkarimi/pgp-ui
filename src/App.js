@@ -5,6 +5,7 @@ import { AppContext } from './libs/contextLib';
 import { Auth } from 'aws-amplify';
 import { onError } from './libs/errorLib';
 import { ADMIN_GROUP, COGNITO_GROUP_FIELD } from './assets/constants/Constants';
+import './styles/global.less';
 
 const App = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(true);

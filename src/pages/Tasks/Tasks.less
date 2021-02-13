@@ -4,38 +4,32 @@
   display: flex;
   align-items: center;
   height: calc(~"100vh - 64px");
-  background: lighten(@nickel-grey, 12);
-}
-
-.question-container {
-  display: flex;
-  flex-direction: column;
-  height: 90%;
   background: radial-gradient(
           ellipse at left bottom,
           rgba(22, 24, 47, 1) 0%,
           rgba(38, 20, 72, 0.9) 59%,
           rgba(17, 27, 75, 0.9) 100%
   );
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 90%;
+  background: lighten(@nickel-grey, 12);
   color: @nickel-grey;
   border-radius: 10px;
   padding: 20px;
 }
-//
-//.ant-card-cover {
-//  display: flex;
-//}
-//
-//.ant-card-cover img {
-//  object-fit: contain;
-//}
-//
-//.ant-card {
-//  background-color: transparent;
-//}
-//
-//.ant-card-head {
-//  margin-bottom: 10px;
-//  border-bottom: none;
-//  color: @nickel-grey;
-//}
+
+.ant-image {
+  display: flex !important;
+}
+
+.ant-card {
+  display: flex;
+  background-color: transparent;
+  justify-content: center;
+  text-align: center;
+}
