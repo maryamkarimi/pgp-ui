@@ -2,15 +2,6 @@
   justify-content: center;
 }
 
-.no-icon {
-  color: #ec4646;
-  padding-right: 5px;
-}
-
-.yes-icon {
-  color: #5aa469;
-}
-
 .no-animate {
   animation: rotate-counter-clockwise 1s infinite;
 }
@@ -35,4 +26,38 @@
   100% {
     transform: rotate(-360deg);
   }
+}
+
+.gradient-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 40px;
+  min-width: 120px;
+  margin: 5px;
+  border-radius: 50px;
+  color: #FFF;
+  box-shadow: 5px 5px 2px -2px #a5a5a5;
+}
+
+.no-button {
+  background-image: linear-gradient(to right top, #ed433f, #df3a37, #d2302f, #c42627, #b71b1f);
+}
+
+.yes-button {
+  background: linear-gradient(to right, #11998e, #38ef7d);
+}
+
+.gradient-btn:nth-child(odd):hover {
+  transition: all 2s ease;
+  transform: translateX(10px);
+  cursor: pointer;
+  box-shadow: -6px -9px 2px -2px #a5a5a5;
+}
+
+.gradient-btn:nth-child(even):hover {
+  transition: all 2s ease;
+  transform: translateX(-10px);
+  cursor: pointer;
+  box-shadow: 8px 8px 2px -2px #a5a5a5;
 }
