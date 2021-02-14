@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-porngenomeui-dev-190606-authRole",
+      "UnauthRoleArn": "arn:aws:iam::961243127366:role/amplify-porngenomeui-dev-190606-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::961243127366:role/amplify-porngenomeui-dev-190606-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-porngenomeui-dev-190606-deployment",
+      "UnauthRoleName": "amplify-porngenomeui-dev-190606-unauthRole",
+      "StackName": "amplify-porngenomeui-dev-190606",
+      "StackId": "arn:aws:cloudformation:us-east-2:961243127366:stack/amplify-porngenomeui-dev-190606/c980ee60-667c-11eb-a567-06326600ecee",
+      "AmplifyAppId": "d1hli9fr4al7n7"
+    },
+    "categories": {
+      "auth": {
+        "porngenomeui990a387a": {}
+      }
+    }
+  }
+}
