@@ -1,7 +1,7 @@
 const config = {
   s3: {
-    REGION: 'us-east-2',
-    BUCKET: 'myporngenomebucket',
+    REGION: 'YOUR_S3_UPLOADS_BUCKET_REGION',
+    BUCKET: 'YOUR_S3_UPLOADS_BUCKET_NAME',
   },
   apiGateway: {
     NAME: 'pgp',

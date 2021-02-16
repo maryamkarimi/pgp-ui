@@ -2,73 +2,57 @@ import React, { useEffect, useState } from 'react';
 import { Upload, Popconfirm, Card, Row, Col, Image, List } from 'antd';
 import { DeleteOutlined, InboxOutlined } from '@ant-design/icons';
 import './Images.less';
-import { Storage } from 'aws-amplify';
 
 const { Dragger } = Upload;
 
 const Images = () => {
   const [images, setImages] = useState([]);
-  const [flag, setFlag] = useState(false);
 
-  const deleteImage = (deleteImage) => {
-    console.log(deleteImage);
-    Storage.remove(deleteImage.name);
-    setImages((prevImages) => prevImages.filter(function(image) {
-      return image !== deleteImage;
-    }));
+  const deleteImage = (imageId) => {
+    // make API call to delete image and then the next line
+    setImages((currentImages) => currentImages.filter((image) => image.id !== imageId));
   };
 
-  const forceUpdate = () => {
-    if (flag || !flag) {
-      setFlag((flag) => !flag);
-    }
+  // eslint-disable-next-line no-unused-vars
+  const addImages = (newImages) => {
+    setImages((currentImages) => [...newImages, ...currentImages]);
   };
 
-  const addImage = (newImage) => {
-    setImages(images.concat(newImage));
-    console.log('image added');
-  };
-
-  const uploadImage = (options) => {
-    const { onSuccess, file, onError } = options;
-    try {
-      Storage.put(file.name, file, {
-        contentType: 'image/*',
-      });
-      const addfile = {
-        name: file.name,
-        url: URL.createObjectURL(file),
-      };
-      addImage(addfile);
-      onSuccess('ok');
-    } catch (err) {
-      onError({ err });
-    }
-  };
-
-  const onPageRendered = () => {
-    getImagesFromS3();
-  };
-
-  const getImagesFromS3 = () => {
-    const filestore = [];
-    Storage.list('').then(function(response) {
-      for (let x = 0; x < response.length; x++) {
-        Storage.get(response[x].key, { download: true }).then(function(result) {
-          const addfile = {
-            name: response[x].key,
-            url: URL.createObjectURL(result.Body),
-          };
-          filestore.push(addfile);
-        });
-      }
-      console.log('filestore:', filestore);
-      setImages(filestore);
-    });
+  const draggerProps = {
+    name: 'file',
+    multiple: true,
+    customRequest: ({ onSuccess, onError, file }) => {
+      // fetch('hdjhk/upload', {
+      //   method: 'POST',
+      //   success: (resp) => {
+      //     onSuccess();
+      //   },
+      //   failure: (err) => {
+      //     onError();
+      //   },
+      // },
+      // );
+    },
   };
 
   useEffect(() => {
-    onPageRendered();
+    // to be replaced with API call
+    setImages([
+      { id: 1, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' },
+      { id: 2, url: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png' },
+      { id: 3, url: 'https://homepages.cae.wisc.edu/~ece533/images/arctichare.png' },
+      { id: 4, url: 'https://homepages.cae.wisc.edu/~ece533/images/baboon.png' },
+      { id: 5, url: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png' },
+      { id: 6, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
+      { id: 7, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
+      { id: 8, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' },
+      { id: 9, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
+      { id: 10, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
+      { id: 11, url: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png' },
+      { id: 12, url: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png' },
+      { id: 13, url: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png' },
+      { id: 14, url: 'https://maryamkarimi.net/static/media/background.8d0f72e5.jpg' }],
+    );
   }, []);
 
   return (
@@ -76,9 +60,7 @@ const Images = () => {
       <Row>
         <Col xs={{ offset: 3, span: 18 }}>
           <div>
-            <Dragger accept="image/*"
-              customRequest={uploadImage}
-            >
+            <Dragger {...draggerProps}>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
@@ -87,7 +69,6 @@ const Images = () => {
                 Support for a single or bulk upload.
               </p>
             </Dragger>
-            <button onClick={forceUpdate}>Show Images</button>
           </div>
           <List
             className="images-list"
@@ -101,7 +82,7 @@ const Images = () => {
                     <Popconfirm
                       key="delete"
                       title="Are you sure you want to delete this image?"
-                      onConfirm={() => deleteImage(item)}>
+                      onConfirm={() => deleteImage(item.id)}>
                       <DeleteOutlined />
                     </Popconfirm>,
                   ]}
