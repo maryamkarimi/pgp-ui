@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Task from './Task';
-import { Col } from 'antd';
+import Task from './Task/Task';
+import { Col, Popover, Row } from 'antd';
 import './Tasks.less';
 import { QUESTION_COUNT } from '../../assets/constants/Constants';
+import TaskInstructions from './TaskInstructions/TaskInstructions';
+import { InfoCircleFilled } from '@ant-design/icons';
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -36,6 +38,8 @@ const Tasks = () => {
     setTasks(mockData);
   }, []);
 
+  const [completedTaskCount, setCompletedTaskCount] = useState(0);
+
   const [currentTaskNumber, setCurrentTaskNumber] = useState(0);
   const incrementTaskNumber = () => {
     setCurrentTaskNumber((taskNumber) => {
@@ -56,10 +60,21 @@ const Tasks = () => {
   };
 
   const getCurrentTask = () => {
-    return tasks[currentTaskNumber];
+    return tasks[currentTaskNumber] || '';
+  };
+
+  const getTaskType = () => {
+    return getCurrentTask()['type'] === 'V' ? 'Verification' : 'Identification';
+  };
+
+  const getCompletedTaskStatus = () => {
+    return completedTaskCount === 1 ?
+        `1 Question Completed` :
+        `${completedTaskCount} Questions Completed`;
   };
 
   const handleSubmit = () => {
+    setCompletedTaskCount((currentNumber) => currentNumber + 1);
     incrementTaskNumber();
     submitResult();
   };
@@ -70,16 +85,38 @@ const Tasks = () => {
   };
 
   return (
-    <>
-      <section className="tasks">
-        <Col
-          xs={{ offset: 2, span: 20 }}
-          md={{ offset: 4, span: 16 }}
-          className="question-container">
-          <Task task={getCurrentTask() || ''} handleSubmit={handleSubmit}/>
-        </Col>
-      </section>
-    </>
+    <div className="tasks">
+      <Col
+        style={{ display: 'flex', height: '100%', alignItems: 'center' }}
+        xs={{ offset: 1, span: 22 }} sm={{ offset: 3, span: 18 }}>
+        <div className="question-container">
+
+          <Col xs={0} md={6} className="side-instructions-container">
+            <TaskInstructions/>
+          </Col>
+
+          <Col className="task-container">
+            <Row className="task-header">
+              <Col className="task-type-container">
+                <h6>{getTaskType()}</h6>
+                <Col md={0}>
+                  <Popover content={<TaskInstructions/>} trigger="click">
+                    <InfoCircleFilled style={{ color: '#2A265F', paddingLeft: '5px' }}/>
+                  </Popover>
+                </Col>
+              </Col>
+              <Col className="progress-text">{getCompletedTaskStatus()}</Col>
+            </Row>
+
+            <Task task={getCurrentTask()} handleSubmit={handleSubmit}/>
+
+            <Row id="skip-btn-container">
+              <button className="btn skip-btn" onClick={incrementTaskNumber}>Skip</button>
+            </Row>
+          </Col>
+        </div>
+      </Col>
+    </div>
   );
 };
 

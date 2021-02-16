@@ -72,7 +72,7 @@ const Cues = () => {
 
   return (
     <Row className="cue-page">
-      <Col xs={{ offset: 3, span: 18 }}>
+      <Col xs={{ offset: 2, span: 20 }} md={{ offset: 3, span: 18 }}>
         <CuesInsertForm addCues={addCues}/>
         <SearchableTable
           title='Cue Name'

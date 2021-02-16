@@ -29,7 +29,7 @@ const Home = () => {
         <img src={logo} alt="pgp" className="login-logo" />
       </div>
 
-      <Col xs={{ offset: 2, span: 20 }} md={{ offset: 3, span: 18 }} className="loginContainer">
+      <Col xs={{ offset: 1, span: 22 }} md={{ offset: 3, span: 18 }} className="loginContainer">
         <Row>
           <Col
             xs={{ offset: 2, span: 20 }}
