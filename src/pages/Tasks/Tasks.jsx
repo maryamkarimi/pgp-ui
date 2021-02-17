@@ -95,7 +95,7 @@ const Tasks = () => {
             <TaskInstructions/>
           </Col>
 
-          <Col className="task-container">
+          <Col xs={24} md={18} className="task-container">
             <Row className="task-header">
               <Col className="task-type-container">
                 <h6>{getTaskType()}</h6>
@@ -110,7 +110,7 @@ const Tasks = () => {
 
             <Task task={getCurrentTask()} handleSubmit={handleSubmit}/>
 
-            <Row id="skip-btn-container">
+            <Row className="skip-btn-container">
               <button className="btn skip-btn" onClick={incrementTaskNumber}>Skip</button>
             </Row>
           </Col>

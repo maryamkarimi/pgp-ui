@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CloseCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import './VerificationTask.less';
+import { Row } from 'antd';
 
 const VerificationTask = ({ task, handleSubmit }) => {
   const [yesShake, setYesShake] = useState(false);
@@ -23,7 +24,7 @@ const VerificationTask = ({ task, handleSubmit }) => {
   };
 
   return (
-    <div className="verification-icons">
+    <Row className="submit-buttons">
       <div className="gradient-btn no-button" onClick={animateNoAndSubmit}>
         <CloseCircleOutlined className = {noShake ? 'no-animate' : 'no-icon'}/>
         <span>No</span>
@@ -32,7 +33,7 @@ const VerificationTask = ({ task, handleSubmit }) => {
         <CheckCircleOutlined className = {yesShake ? `yes-animate` : 'yes-icon'}/>
         <span>Yes</span>
       </div>
-    </div>
+    </Row>
   );
 };
 
