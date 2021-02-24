@@ -58,7 +58,7 @@ const Images = () => {
   return (
     <div className="admin-images-page">
       <Row>
-        <Col xs={{ offset: 3, span: 18 }}>
+        <Col xs={{ offset: 2, span: 20 }} md={{ offset: 3, span: 18 }}>
           <div>
             <Dragger {...draggerProps}>
               <p className="ant-upload-drag-icon">

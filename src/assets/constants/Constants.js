@@ -19,3 +19,10 @@ export const CUE_ACTIVE_FIELD = 'isActive';
 
 // Maximum number of nationalities one can select
 export const MAX_NATIONALITY = 3;
+
+export const INSTRUCTIONS = [
+  'We\'re interested in learning about the content of different sexual media.',
+  'For each picture, take a moment to record the first five things you see.',
+  'We are only interested in what you can see!',
+  'We are not interested in how a picture makes you feel or what a picture makes you think about.',
+];
