@@ -10,11 +10,11 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [nextTasks, setNextTasks] = useState([]);
   const mockData = [
-    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'SET 1: Question1: is there a cat in this image?' },
-    { image: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png', type: 'V', question: 'SET 1: Question3: is there a dog in this image?' },
-    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'I', question: 'SET 1: Question4: Enter 5 of your favourite fruits' },
-    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'SET 1: Question5: is there a giraffe in this image?' },
-    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'SET 1: Question6: is there a cat in this image?' },
+    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'Can you see cats in this picture?' },
+    { image: 'https://homepages.cae.wisc.edu/~ece533/images/girl.png', type: 'V', question: 'Can you see flowers in this picture?' },
+    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'I', question: 'Please identify 5 different things that you can see in this picture.' },
+    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'Can you see peppers in this picture?' },
+    { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'Can you see carrots in this picture?' },
     { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'I', question: 'SET 1: Question7: Enter 5 of your favourite food' },
     { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'V', question: 'SET 1: Question8: is there a dog in this image?' },
     { image: 'https://homepages.cae.wisc.edu/~ece533/images/peppers.png', type: 'I', question: 'SET 1: Question9: Enter 5 of your favourite fruits' },
@@ -91,11 +91,11 @@ const Tasks = () => {
         xs={{ offset: 1, span: 22 }} sm={{ offset: 3, span: 18 }}>
         <div className="question-container">
 
-          <Col xs={0} md={6} className="side-instructions-container">
+          <Col xs={0} md={7} className="side-instructions-container">
             <TaskInstructions/>
           </Col>
 
-          <Col xs={24} md={18} className="task-container">
+          <Col xs={24} md={17} className="task-container">
             <Row className="task-header">
               <Col className="task-type-container">
                 <h6>{getTaskType()}</h6>
