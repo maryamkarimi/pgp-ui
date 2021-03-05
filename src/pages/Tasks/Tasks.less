@@ -1,12 +1,18 @@
 @import "src/styles/colours.less";
 
-.tasks {
+.tasks-page {
   background-image: linear-gradient(45deg, lighten(@nickel-grey, 20), lighten(@nickel-grey, 10));
   height: calc(~"100vh - 64px");
   overflow: hidden;
 }
 
-.question-container {
+.tasks-page .tasks-main-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.tasks-page .question-container {
   height: 90%;
   background-color: #fff;
   border-radius: 10px;
@@ -23,13 +29,13 @@
   }
 }
 
-.side-instructions-container {
+.tasks-page .side-instructions-container {
   background-color: #2A265F;
   color: #fff;
   padding: 20px;
 }
 
-.task-container {
+.tasks-page .task-container {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -37,39 +43,39 @@
   width: 100%;
 }
 
-.progress-text {
+.tasks-page .progress-text {
   font-size: 10px;
   opacity: 0.6;
   letter-spacing: 1px;
 }
 
-.skip-btn {
+.tasks-page .skip-btn {
   font-size: 16px;
   color: #2A265F;
   letter-spacing: 1px;
 }
 
-.skip-btn:hover {
+.tasks-page .skip-btn:hover {
   text-decoration: underline;
 }
 
-.skip-btn-container {
+.tasks-page .skip-btn-container {
   justify-content: center;
   min-height: 25px;
 }
 
-.task-header {
+.tasks-page .task-header {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
 }
 
-.task-type-container {
+.tasks-page .task-type-container {
   display: flex;
   align-items: baseline;
 }
 
-.task-type-container h6 {
+.tasks-page .task-type-container h6 {
   opacity: 0.6;
 }
 
@@ -96,6 +102,11 @@
   top: 0 !important;
 }
 
-.ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
+.tasks-page .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
   left: 90px !important;
+}
+
+.tasks-page #info-icon {
+  color: #2A265F;
+  padding-left: 5px;
 }

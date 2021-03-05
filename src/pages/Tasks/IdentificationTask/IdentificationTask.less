@@ -1,30 +1,24 @@
 @import "src/styles/colours.less";
 
-.ant-select-multiple .ant-select-selection-item {
+.select-container {
+  min-height: 50px;
+}
+
+.select-container .ant-select {
+  width: 100%;
+}
+
+.select-container .ant-select-multiple .ant-select-selection-item {
   color: #fff;
-  background: #2A265F;
+  background: lighten(#2A265F, 15);
   border-radius: 6px;
 }
 
-.ant-select-multiple .ant-select-selection-item-remove > .anticon {
+.select-container .ant-select-multiple .ant-select-selection-item-remove > .anticon {
   color: white;
   vertical-align: 0;
 }
 
-.ant-select-selector {
+.select-container .ant-select-selector {
   border-radius: 6px !important;
-}
-
-.select-input {
-  width: 100%;
-}
-
-.disable-select-input {
-  input {
-    display: none;
-  }
-}
-
-.submit-button {
-  background-image: linear-gradient(to top, lighten(#2A265F, 25), lighten(#2A265F, 20), lighten(#2A265F, 15), lighten(#2A265F, 10));
 }

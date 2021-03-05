@@ -1,14 +1,22 @@
 import React from 'react';
-import { INSTRUCTIONS } from '../../../assets/constants/Constants';
 import './TaskInstructions.less';
+import {
+  IDENTIFICATION_INSTRUCTIONS,
+  VERIFICATION_INSTRUCTIONS,
+} from '../../../assets/constants/Instructions';
+import { TASK_TYPE_VERIFICATION } from '../../../assets/constants/Constants';
 
-const TaskInstructions = () => {
+const TaskInstructions = ({ taskType }) => {
+  const instructions = taskType === TASK_TYPE_VERIFICATION ?
+      VERIFICATION_INSTRUCTIONS :
+      IDENTIFICATION_INSTRUCTIONS;
+
   return (
     <div className="instructions">
       <h4 id="instructions-header">Instructions</h4>
       <ul>
         {
-          INSTRUCTIONS.map((instruction) =>
+          instructions.map((instruction) =>
             <li key={instruction}>
               <h6 className="instruction">
                 {instruction}

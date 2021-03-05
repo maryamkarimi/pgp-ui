@@ -20,15 +20,11 @@ export const CUE_ACTIVE_FIELD = 'isActive';
 // Maximum number of nationalities one can select
 export const MAX_NATIONALITY = 3;
 
-export const INSTRUCTIONS = [
-  'What we want you to do is to break this picture down into separate visual components and just ' +
-  'tell us what they are.',
-  'For example, if you saw a picture of a bicycle you might see things' +
-  ' like wheels, pedals, handlebars, a frame, a person riding it, a bicycle helmet, etc. ' +
-  'and you would enter these things into the spaces provided below.',
-  'Try not to free-associate while doing this task; if a picture makes you think that the people ' +
-  'involved just did something, or are about to do something, or' +
-  ' if they remind you of someone, we don\'t care.',
-  'We are only interested in what you can actually see in each picture.',
-  'Please try to use a single word or short phrase for each of your responses whenever possible.',
-];
+export const TASK_TYPE_VERIFICATION = 'V';
+export const TASK_TYPE_IDENTIFICATION = 'I';
+
+export const TASK_TYPE_DESCRIPTION_VERIFICATION = 'Verification';
+export const TASK_TYPE_DESCRIPTION_IDENTIFICATION = 'Identification';
+
+export const ERROR_TOO_MANY_CUES = 'Too many cues entered. Please limit your response to 5 cues.';
+export const ERROR_CUE_REQUIRED = 'Please identify at least one cue.';
