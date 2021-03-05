@@ -20,9 +20,11 @@ export const CUE_ACTIVE_FIELD = 'isActive';
 // Maximum number of nationalities one can select
 export const MAX_NATIONALITY = 3;
 
-export const INSTRUCTIONS = [
-  'We\'re interested in learning about the content of different sexual media.',
-  'For each picture, take a moment to record the first five things you see.',
-  'We are only interested in what you can see!',
-  'We are not interested in how a picture makes you feel or what a picture makes you think about.',
-];
+export const TASK_TYPE_VERIFICATION = 'V';
+export const TASK_TYPE_IDENTIFICATION = 'I';
+
+export const TASK_TYPE_DESCRIPTION_VERIFICATION = 'Verification';
+export const TASK_TYPE_DESCRIPTION_IDENTIFICATION = 'Identification';
+
+export const ERROR_TOO_MANY_CUES = 'Too many cues entered. Please limit your response to 5 cues.';
+export const ERROR_CUE_REQUIRED = 'Please identify at least one cue.';
