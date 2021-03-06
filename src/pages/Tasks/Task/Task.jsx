@@ -3,10 +3,10 @@ import VerificationTask from '../VerificationTask/VerificationTask';
 import IdentificationTask from '../IdentificationTask/IdentificationTask';
 import './Task.less';
 
-const Task = ({ task, handleSubmit }) => {
+const Task = ({ task, incrementTask }) => {
   const taskTypeLookup = {
-    V: <VerificationTask task={task} handleSubmit={handleSubmit}/>,
-    I: <IdentificationTask task={task} handleSubmit={handleSubmit}/>,
+    V: <VerificationTask task={task} incrementTask={incrementTask}/>,
+    I: <IdentificationTask task={task} incrementTask={incrementTask}/>,
   };
 
   return (

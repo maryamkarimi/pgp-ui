@@ -39,4 +39,4 @@ export const POLITICAL_STAND = [
 ];
 
 export const MAX_OTHER_CHAR_LENGTH = 200;
-
+export const ELABORATE_TEXT = 'Please elaborate if you would like to...';

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import LoaderButton from '../../../components/LoaderButton/LoaderButton';
 import { useAppContext } from '../../../libs/contextLib';
-import './Signup.css';
 import { Auth } from 'aws-amplify';
 import { Form, Input } from 'antd';
 import SignupForm from './SignupForm';
+import { signUpUser } from '../../../services/api/user';
+import './Signup.css';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
@@ -24,7 +25,6 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
   };
 
   const handleSignupSubmit = (fields) => {
-    // TODO: Call API
     setIsLoading(true);
 
     Auth.signUp({
@@ -47,6 +47,9 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
         .then(() => Auth.signIn(userInfo.email, userInfo.password))
         .then(() => {
           userHasAuthenticated(true);
+          signUpUser(fields).catch((errorMessage) => {
+            console.log(errorMessage);
+          });
         }).catch((e) => {
           setError(e.message);
           setIsLoading(false);

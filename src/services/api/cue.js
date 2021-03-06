@@ -4,12 +4,12 @@ import { handleError, pullOutJson } from '../handlers';
 
 export const getCues = () => {
   return API
-      .get(getApiName(), 'cue/get-cues', {})
+      .get(getApiName(), '/cue/get-cues', {})
       .then(handleError)
       .then(pullOutJson);
 };
 
-export const addCues = (cues) => {
+export const insertCues = (cues) => {
   const body = { cue: cues };
   return API
       .post(getApiName(), '/create-cues', { body })
@@ -17,7 +17,7 @@ export const addCues = (cues) => {
       .then(pullOutJson);
 };
 
-export const updateCue = (cue) => {
+export const editCue = (cue) => {
   const body = { cue };
   return API
       .put(getApiName(), '/update-cue', { body })

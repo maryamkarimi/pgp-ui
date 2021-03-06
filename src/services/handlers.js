@@ -7,7 +7,6 @@ export const pullOutJson = (response) => {
 };
 
 export const handleError = (response) => {
-  console.log(response);
   if (response.ok) {
     return response;
   }
