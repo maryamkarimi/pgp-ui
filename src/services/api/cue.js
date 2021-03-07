@@ -12,7 +12,7 @@ export const getCues = () => {
 export const insertCues = (cues) => {
   const body = { cues: cues };
   return API
-      .post(getApiName(), '/create-cues', { body })
+      .post(getApiName(), '/cue/create-cues', { body })
       .then(handleError)
       .then(pullOutJson);
 };
@@ -20,6 +20,6 @@ export const insertCues = (cues) => {
 export const editCue = (cue) => {
   const body = { ...cue };
   return API
-      .put(getApiName(), '/update-cue', { body })
+      .put(getApiName(), '/cue/update-cue', { body })
       .then(handleError);
 };
