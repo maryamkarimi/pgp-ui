@@ -10,7 +10,7 @@ export const getCues = () => {
 };
 
 export const addCues = (cues) => {
-  const body = { cue: cues };
+  const body = { cues: cues };
   return API
       .post(getApiName(), '/create-cues', { body })
       .then(handleError)
