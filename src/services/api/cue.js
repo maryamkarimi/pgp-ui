@@ -4,7 +4,7 @@ import { handleError, pullOutJson } from '../handlers';
 
 export const getCues = () => {
   return API
-      .get(getApiName(), 'cue/get-cues', {})
+      .get(getApiName(), '/cue/get-cues', {})
       .then(handleError)
       .then(pullOutJson);
 };
@@ -12,7 +12,7 @@ export const getCues = () => {
 export const addCues = (cues) => {
   const body = { cues: cues };
   return API
-      .post(getApiName(), '/create-cues', { body })
+      .post(getApiName(), '/cue/create-cues', { body })
       .then(handleError)
       .then(pullOutJson);
 };
@@ -20,6 +20,6 @@ export const addCues = (cues) => {
 export const updateCue = (cue) => {
   const body = { cue };
   return API
-      .put(getApiName(), '/update-cue', { body })
+      .put(getApiName(), '/cue/update-cue', { body })
       .then(handleError);
 };
