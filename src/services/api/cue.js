@@ -18,7 +18,7 @@ export const insertCues = (cues) => {
 };
 
 export const editCue = (cue) => {
-  const body = { cue };
+  const body = { ...cue };
   return API
       .put(getApiName(), '/update-cue', { body })
       .then(handleError);
