@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Signup.css';
 import { Row, Col, Select, Form, Input, InputNumber } from 'antd';
 import {
@@ -15,7 +15,6 @@ import { MAX_NATIONALITY } from '../../../assets/constants/Constants';
 const { Option } = Select;
 
 const SignupForm = ({ xsSpan, xlSpan }) => {
-  const [selectedNationalities, setSelectedNationalities] = useState([]);
   return (
     <>
       <Row className="space-between-row">
@@ -65,24 +64,23 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
 
       <Row className='space-between-row'>
         <Col xs={xsSpan} xl={xlSpan}>
-          <Form.Item name='nationality' label='Nationality(ies)'>
+          <Form.Item
+            name='nationality'
+            label='Nationality(ies)'
+            rules={[{
+              type: 'array',
+              max: MAX_NATIONALITY,
+              message: `Too many nationalities selected. Please limit to ${MAX_NATIONALITY}`,
+            }]}
+          >
             <Select
               mode="multiple"
               allowClear
               placeholder="Select one or more nationalities..."
-              onChange={((value) => setSelectedNationalities(value))}
             >
               {
                 COUNTRIES.map((country) =>
-                  <Option
-                    key={country.code}
-                    value={country.name}
-                    disabled={
-                        selectedNationalities.length >= MAX_NATIONALITY ?
-                            !selectedNationalities.includes(country.code) :
-                            false
-                    }
-                  >
+                  <Option key={country.code} value={country.name}>
                     {country.name}
                   </Option>)
               }
