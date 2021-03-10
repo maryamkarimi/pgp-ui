@@ -33,7 +33,15 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
     }).then((currentUser) => {
       setIsLoading(false);
       setNewUser(currentUser);
-      setUserInfo(fields);
+      setUserInfo({
+        email: fields.email,
+        age: fields.age,
+        gender: fields.gender + fields.customizeGender,
+        sexualOrientation: fields.sexualOrientation + fields.customizeSexualOrientation,
+        religion: fields.religion + fields.customizeReligion,
+        politicalAffiliation: fields.politicalAffiliation,
+        nationality: fields['nationality'].join(', '),
+      });
     }).catch((e) => {
       setError(e.message);
       setIsLoading(false);
@@ -47,7 +55,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
         .then(() => Auth.signIn(userInfo.email, userInfo.password))
         .then(() => {
           userHasAuthenticated(true);
-          signUpUser(fields).catch((errorMessage) => {
+          signUpUser(userInfo).catch((errorMessage) => {
             console.log(errorMessage);
           });
         }).catch((e) => {
