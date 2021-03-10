@@ -40,7 +40,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
         sexualOrientation: fields.sexualOrientation + fields.customizeSexualOrientation,
         religion: fields.religion + fields.customizeReligion,
         politicalAffiliation: fields.politicalAffiliation,
-        nationality: fields['nationality'].join(', '),
+        nationality: fields.nationality.join(', '),
       });
     }).catch((e) => {
       setError(e.message);
@@ -51,6 +51,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
   const handleConfirmationSubmit = (fields) => {
     setIsLoading(true);
 
+    console.log(userInfo);
     Auth.confirmSignUp(userInfo.email, fields.confirmationCode)
         .then(() => Auth.signIn(userInfo.email, userInfo.password))
         .then(() => {
