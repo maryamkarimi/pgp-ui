@@ -36,11 +36,12 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
       setUserInfo({
         email: fields.email,
         age: fields.age,
-        gender: fields.gender + fields.customizeGender,
-        sexualOrientation: fields.sexualOrientation + fields.customizeSexualOrientation,
-        religion: fields.religion + fields.customizeReligion,
-        politicalAffiliation: fields.politicalAffiliation,
-        nationality: fields.nationality.join(', '),
+        gender: (fields.gender || '') + (fields.customizeGender || ''),
+        sexualOrientation: (fields.sexualOrientation || '') +
+                           (fields.customizeSexualOrientation || ''),
+        religion: (fields.religion || '') + (fields.customizeReligion || ''),
+        politicalAffiliation: (fields.politicalAffiliation || ''),
+        nationality: fields.nationality === undefined ? '' : fields.nationality.join(', '),
       });
     }).catch((e) => {
       setError(e.message);
