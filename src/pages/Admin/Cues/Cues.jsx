@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import CuesInsertForm from './CuesInsertForm';
 import SearchableTable from '../../../components/SearchableTable/SearchableTable';
 import { EditableCell, EditableRow } from '../../../components/Editable';
@@ -12,7 +12,11 @@ const Cues = () => {
   const [cues, setCues] = useState([]);
 
   useEffect(() => {
-    getCues().then((response) => setCues(response));
+    getCues()
+        .then((response) => setCues(response))
+        .catch(() => {
+          message.error('Oops! Something went wrong. Please try again!');
+        });
   }, []);
 
   const updateCue = (record, newValue, updatedField) => {
