@@ -10,7 +10,7 @@ const CuesInsertForm = ({ addCues }) => {
     form.validateFields()
         .then((fields) => {
           const newCues = new Set(fields['cues'].split(CUE_SEPARATOR).filter((cue) => cue !== ''));
-          addCues(newCues);
+          addCues([...newCues]);
         }).then(() => form.resetFields());
   };
 
