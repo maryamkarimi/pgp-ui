@@ -15,5 +15,5 @@ export const addImages = (images) => {
 export const updateImage = (image) => {
   const body = { image };
   return API
-      .put(getApiName(), '/update-image', { body });
+      .post(getApiName(), '/update-image', { body });
 };

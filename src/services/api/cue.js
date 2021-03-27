@@ -15,5 +15,5 @@ export const insertCues = (cues) => {
 export const editCue = (cue) => {
   const body = { ...cue };
   return API
-      .put(getApiName(), '/cue/update-cue', { body });
+      .post(getApiName(), '/cue/update-cue', { body });
 };
