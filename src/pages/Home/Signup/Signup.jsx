@@ -10,7 +10,7 @@ import { LOGIN_PAGE } from '../../../assets/constants/Constants';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
-  const { userHasAuthenticated } = useAppContext();
+  const { userHasAuthenticated, setIsAdmin } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const [form] = Form.useForm();
@@ -60,7 +60,14 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
         .then(() => {
           userHasAuthenticated(true);
           signUpUser(userInfo).catch((errorMessage) => {
-            console.log(errorMessage);
+            if ('Underage user. Account disabled.' === errorMessage.message) {
+              Auth.signOut().then(() => {
+                userHasAuthenticated(false);
+                setIsAdmin(false);
+                history.push(LOGIN_PAGE);
+              });
+              setError(errorMessage.message);
+            }
           });
         }).catch((e) => {
           setError(e.message);
