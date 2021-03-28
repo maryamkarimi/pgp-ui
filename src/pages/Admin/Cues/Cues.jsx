@@ -4,7 +4,7 @@ import CuesInsertForm from './CuesInsertForm';
 import SearchableTable from '../../../components/SearchableTable/SearchableTable';
 import { EditableCell, EditableRow } from '../../../components/Editable';
 import { CUE_ID_FIELD, CUE_NAME_FIELD } from '../../../assets/constants/Constants';
-import { getCues, insertCues, editCue } from '../../../services/api/cue';
+import { getCues, editCue } from '../../../services/api/cue';
 import './Cues.less';
 
 const Cues = () => {
@@ -30,12 +30,6 @@ const Cues = () => {
     });
   };
 
-  const addCues = (newCues) => {
-    insertCues(newCues).then((addedCues) => {
-      setCues((currCues) => [...addedCues, ...currCues]);
-    });
-  };
-
   const components = {
     body: {
       row: EditableRow,
@@ -57,7 +51,7 @@ const Cues = () => {
   return (
     <Row className="cue-page">
       <Col xs={{ offset: 2, span: 20 }} md={{ offset: 3, span: 18 }}>
-        <CuesInsertForm addCues={addCues}/>
+        <CuesInsertForm setCues={setCues}/>
         <SearchableTable
           title='Cue Name'
           dataSource={cues}
