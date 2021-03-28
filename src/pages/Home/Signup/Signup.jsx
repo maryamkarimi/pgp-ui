@@ -6,6 +6,7 @@ import { Form, Input } from 'antd';
 import SignupForm from './SignupForm';
 import { signUpUser } from '../../../services/api/user';
 import './Signup.css';
+import { LOGIN_PAGE } from '../../../assets/constants/Constants';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
@@ -14,6 +15,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
 
   const [form] = Form.useForm();
   const [userInfo, setUserInfo] = useState();
+  const [userPassword, setUserPassword] = useState();
 
   const [error, setError] = useState('');
 
@@ -33,6 +35,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
     }).then((currentUser) => {
       setIsLoading(false);
       setNewUser(currentUser);
+      setUserPassword(fields.password);
       setUserInfo({
         email: fields.email,
         age: fields.age,
@@ -52,9 +55,8 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
   const handleConfirmationSubmit = (fields) => {
     setIsLoading(true);
 
-    console.log(userInfo);
     Auth.confirmSignUp(userInfo.email, fields.confirmationCode)
-        .then(() => Auth.signIn(userInfo.email, userInfo.password))
+        .then(() => Auth.signIn(userInfo.email, userPassword))
         .then(() => {
           userHasAuthenticated(true);
           signUpUser(userInfo).catch((errorMessage) => {
