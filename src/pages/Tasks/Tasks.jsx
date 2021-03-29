@@ -14,7 +14,6 @@ import './Tasks.less';
 const Tasks = () => {
   // Task Format: { image: 'https://...', type: 'V', question: 'Can you see a cat in this picture?'}
   const [tasks, setTasks] = useState([]);
-  const [nextTasks, setNextTasks] = useState([]);
 
   useEffect(() => {
     getTasks().then((response) => setTasks(response));
@@ -27,15 +26,8 @@ const Tasks = () => {
     setCurrentTaskNumber((taskNumber) => {
       // if all of the questions are already answered
       if (taskNumber + 1 === QUESTION_COUNT) {
-        setTasks(nextTasks);
-        setNextTasks([]);
+        getTasks().then((response) => setTasks(response));
         return 0;
-      }
-
-      // if already answered half of the questions,
-      // make an API call and have the second second of questions ready
-      if (taskNumber === QUESTION_COUNT / 2) {
-        getTasks().then((response) => setNextTasks(response));
       }
 
       return taskNumber + 1;
