@@ -80,27 +80,25 @@
   opacity: 0.6;
 }
 
-.ant-popover {
+.info-popover {
   width: 90vw;
   padding-top: 4px;
   left: 5vw !important;
-}
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .ant-popover {
+  .ant-popover-arrow {
+    background-color: rgb(42, 38, 95);
+    border-color: rgb(42, 38, 95) !important;
+    top: 0 !important;
+  }
+
+  .ant-popover-inner {
+    background-color: rgb(42, 38, 95);
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
     display: none;
   }
-}
-
-.ant-popover-inner {
-  background-color: rgb(42, 38, 95);
-}
-
-.ant-popover-arrow {
-  background-color: rgb(42, 38, 95);
-  border-color: rgb(42, 38, 95) !important;
-  top: 0 !important;
 }
 
 .tasks-page .ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {

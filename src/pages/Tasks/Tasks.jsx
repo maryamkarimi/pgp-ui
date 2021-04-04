@@ -71,7 +71,10 @@ const Tasks = () => {
               <Col className="task-type-container">
                 <h6>{getTaskTypeDescription()}</h6>
                 <Col md={0}>
-                  <Popover content={<TaskInstructions/>} trigger="click">
+                  <Popover
+                    overlayClassName="info-popover"
+                    content={<TaskInstructions/>}
+                    trigger="click">
                     <InfoCircleFilled id="info-icon"/>
                   </Popover>
                 </Col>
