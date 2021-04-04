@@ -15,7 +15,7 @@ const Cues = () => {
     getCues()
         .then((response) => setCues(response))
         .catch(() => {
-          message.error('Oops! Something went wrong. Please try again!');
+          message.error('Failed to load cues. Please try again!');
         });
   }, []);
 

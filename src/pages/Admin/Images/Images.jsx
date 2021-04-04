@@ -24,7 +24,7 @@ const Images = () => {
           });
         })
         .catch(() => {
-          message.error('Oops! Something went wrong. Please try again!');
+          message.error('Failed to load images. Please try again!');
         });
   }, []);
 
