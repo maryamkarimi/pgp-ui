@@ -1,7 +1,7 @@
 export const ADMIN_HOME = '/admin';
 export const ADMIN_IMAGES = '/admin/images';
 export const ADMIN_CUES = '/admin/cues';
-export const PARTICIPANT_HOME = '/survey';
+export const PARTICIPANT_HOME = '/task';
 export const LOGIN_PAGE = '/';
 
 export const COGNITO_GROUP_FIELD = 'cognito:groups';

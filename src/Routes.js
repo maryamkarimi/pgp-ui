@@ -9,6 +9,12 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Tasks from './pages/Tasks/Tasks';
 import Cues from './pages/Admin/Cues/Cues';
 import Images from './pages/Admin/Images/Images';
+import {
+  ADMIN_CUES,
+  ADMIN_HOME,
+  ADMIN_IMAGES,
+  PARTICIPANT_HOME,
+} from './assets/constants/Constants';
 
 const Routes = () => {
   return (
@@ -17,16 +23,16 @@ const Routes = () => {
         <UnauthenticatedRoute exact path="/">
           <Home />
         </UnauthenticatedRoute>
-        <AuthenticatedRoute exact path="/survey">
+        <AuthenticatedRoute exact path={PARTICIPANT_HOME}>
           <Tasks/>
         </AuthenticatedRoute>
-        <AdminRoute exact path="/admin">
+        <AdminRoute exact path={ADMIN_HOME}>
           <Admin />
         </AdminRoute>
-        <AdminRoute exact path="/admin/images">
+        <AdminRoute exact path={ADMIN_IMAGES}>
           <Images/>
         </AdminRoute>
-        <AdminRoute exact path="/admin/cues">
+        <AdminRoute exact path={ADMIN_CUES}>
           <Cues/>
         </AdminRoute>
         <Route>
