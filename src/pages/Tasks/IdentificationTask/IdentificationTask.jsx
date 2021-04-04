@@ -3,10 +3,16 @@ import { Row, Select } from 'antd';
 import './IdentificationTask.less';
 import { ERROR_CUE_REQUIRED, ERROR_TOO_MANY_CUES } from '../../../assets/constants/Constants';
 import AnimatedIconButton from '../../../components/AnimatedIconButton/AnimatedIconButton';
+import { submitIdentificationAnswer } from '../../../services/api/results';
 
-const IdentificationTask = ({ task, handleSubmit }) => {
+const IdentificationTask = ({ task, incrementTask }) => {
   const [cues, setCues] = useState([]);
   const [showRequiredMessage, setShowRequiredMessage] = useState(false);
+
+  const submitAnswer = () => {
+    submitIdentificationAnswer(task['imageId'], cues).then(() => {});
+    incrementTask();
+  };
 
   const isValid = () => {
     if (cues.length === 0) {
@@ -44,7 +50,7 @@ const IdentificationTask = ({ task, handleSubmit }) => {
       <Row className="submit-buttons">
         <AnimatedIconButton
           isValidated={isValid}
-          handleSubmit={handleSubmit}
+          handleSubmit={submitAnswer}
           type='submit'
         />
       </Row>

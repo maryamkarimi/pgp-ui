@@ -10,12 +10,13 @@ import './PGPHeader.less';
 const { Header } = Layout;
 
 const PGPHeader = () => {
-  const { userHasAuthenticated, isAdmin } = useAppContext();
+  const { userHasAuthenticated, isAdmin, setIsAdmin } = useAppContext();
   const history = useHistory();
 
   const handleLogout = () => {
     Auth.signOut().then(() => {
       userHasAuthenticated(false);
+      setIsAdmin(false);
       history.push(LOGIN_PAGE);
     });
   };

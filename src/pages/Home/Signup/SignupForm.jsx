@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Signup.css';
 import { Row, Col, Select, Form, Input, InputNumber } from 'antd';
 import {
+  ELABORATE_TEXT,
   GENDER,
   GENDER_OTHER, MAX_OTHER_CHAR_LENGTH, POLITICAL_STAND, RELIGION, RELIGION_OTHER,
   SEXUAL_ORIENTATION,
@@ -14,7 +15,6 @@ import { MAX_NATIONALITY } from '../../../assets/constants/Constants';
 const { Option } = Select;
 
 const SignupForm = ({ xsSpan, xlSpan }) => {
-  const [selectedNationalities, setSelectedNationalities] = useState([]);
   return (
     <>
       <Row className="space-between-row">
@@ -64,24 +64,23 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
 
       <Row className='space-between-row'>
         <Col xs={xsSpan} xl={xlSpan}>
-          <Form.Item name='nationalities' label='Nationality(ies)'>
+          <Form.Item
+            name='nationality'
+            label='Nationality(ies)'
+            rules={[{
+              type: 'array',
+              max: MAX_NATIONALITY,
+              message: `Too many nationalities selected. Please limit to ${MAX_NATIONALITY}`,
+            }]}
+          >
             <Select
               mode="multiple"
               allowClear
               placeholder="Select one or more nationalities..."
-              onChange={((value) => setSelectedNationalities(value))}
             >
               {
                 COUNTRIES.map((country) =>
-                  <Option
-                    key={country.code}
-                    value={country.name}
-                    disabled={
-                        selectedNationalities.length >= MAX_NATIONALITY ?
-                            !selectedNationalities.includes(country.code) :
-                            false
-                    }
-                  >
+                  <Option key={country.code} value={country.name}>
                     {country.name}
                   </Option>)
               }
@@ -89,14 +88,14 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
           </Form.Item>
         </Col>
         <Col xs={xsSpan} xl={xlSpan}>
-          <Form.Item label='Politically, you describe yourself as...' name='politicalView'>
-            <Select placeholder="Select political stand..." allowClear>
+          <Form.Item label='Politically, you describe yourself as...' name='politicalAffiliation'>
+            <Select placeholder="Select political affiliation..." allowClear>
               {
-                POLITICAL_STAND.map((politicalView) =>
+                POLITICAL_STAND.map((politicalAffiliation) =>
                   <Option
-                    key={politicalView}
-                    value={politicalView}>
-                    {politicalView}
+                    key={politicalAffiliation}
+                    value={politicalAffiliation}>
+                    {politicalAffiliation}
                   </Option>)
               }
             </Select>
@@ -122,7 +121,7 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
                   <Form.Item label="Other Gender" name="customizeGender">
                     <Input
                       className="elaborate-input"
-                      placeholder="Please elaborate if you would like to..."
+                      placeholder={ELABORATE_TEXT}
                       maxLength={MAX_OTHER_CHAR_LENGTH}
                     />
                   </Form.Item>
@@ -159,7 +158,7 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
                   <Form.Item label="Other Sexual Orientation" name="customizeSexualOrientation">
                     <Input
                       className="elaborate-input"
-                      placeholder="Please elaborate if you would like to..."
+                      placeholder={ELABORATE_TEXT}
                       maxLength={MAX_OTHER_CHAR_LENGTH}
                     />
                   </Form.Item>
@@ -199,7 +198,7 @@ const SignupForm = ({ xsSpan, xlSpan }) => {
                   <Form.Item label="Other Religion or Spiritual Tradition" name="customizeReligion">
                     <Input
                       className="elaborate-input"
-                      placeholder="Please elaborate if you would like to..."
+                      placeholder={ELABORATE_TEXT}
                       maxLength={MAX_OTHER_CHAR_LENGTH}
                     />
                   </Form.Item>

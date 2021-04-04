@@ -2,12 +2,23 @@ import React from 'react';
 import './VerificationTask.less';
 import { Row } from 'antd';
 import AnimatedIconButton from '../../../components/AnimatedIconButton/AnimatedIconButton';
+import { submitVerificationAnswer } from '../../../services/api/results';
 
-const VerificationTask = ({ task, handleSubmit }) => {
+const VerificationTask = ({ task, incrementTask }) => {
+  const submitNo = () => {
+    submitVerificationAnswer(task['cueImageId'], false).then(() => {});
+    incrementTask();
+  };
+
+  const submitYes = () => {
+    submitVerificationAnswer(task['cueImageId'], true).then(() => {});
+    incrementTask();
+  };
+
   return (
     <Row className="submit-buttons">
-      <AnimatedIconButton handleSubmit={handleSubmit} type='no' isValidated={() => true}/>
-      <AnimatedIconButton handleSubmit={handleSubmit} type='yes' isValidated={() => true}/>
+      <AnimatedIconButton handleSubmit={submitNo} type='no' isValidated={() => true}/>
+      <AnimatedIconButton handleSubmit={submitYes} type='yes' isValidated={() => true}/>
     </Row>
   );
 };

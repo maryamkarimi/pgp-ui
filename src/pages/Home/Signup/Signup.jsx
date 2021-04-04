@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import LoaderButton from '../../../components/LoaderButton/LoaderButton';
 import { useAppContext } from '../../../libs/contextLib';
-import './Signup.css';
 import { Auth } from 'aws-amplify';
 import { Form, Input } from 'antd';
 import SignupForm from './SignupForm';
+import { signUpUser } from '../../../services/api/user';
+import './Signup.css';
+import { LOGIN_PAGE } from '../../../assets/constants/Constants';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
-  const { userHasAuthenticated } = useAppContext();
+  const { userHasAuthenticated, setIsAdmin } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const [form] = Form.useForm();
   const [userInfo, setUserInfo] = useState();
+  const [userPassword, setUserPassword] = useState();
 
   const [error, setError] = useState('');
 
@@ -24,7 +27,6 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
   };
 
   const handleSignupSubmit = (fields) => {
-    // TODO: Call API
     setIsLoading(true);
 
     Auth.signUp({
@@ -33,7 +35,17 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
     }).then((currentUser) => {
       setIsLoading(false);
       setNewUser(currentUser);
-      setUserInfo(fields);
+      setUserPassword(fields.password);
+      setUserInfo({
+        email: fields.email,
+        age: fields.age,
+        gender: (fields.gender || '') + (fields.customizeGender || ''),
+        sexualOrientation: (fields.sexualOrientation || '') +
+                           (fields.customizeSexualOrientation || ''),
+        religion: (fields.religion || '') + (fields.customizeReligion || ''),
+        politicalAffiliation: (fields.politicalAffiliation || ''),
+        nationality: fields.nationality === undefined ? '' : fields.nationality.join(', '),
+      });
     }).catch((e) => {
       setError(e.message);
       setIsLoading(false);
@@ -44,9 +56,19 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
     setIsLoading(true);
 
     Auth.confirmSignUp(userInfo.email, fields.confirmationCode)
-        .then(() => Auth.signIn(userInfo.email, userInfo.password))
+        .then(() => Auth.signIn(userInfo.email, userPassword))
         .then(() => {
           userHasAuthenticated(true);
+          signUpUser(userInfo).catch((errorMessage) => {
+            if ('Underage user. Account disabled.' === errorMessage.message) {
+              Auth.signOut().then(() => {
+                userHasAuthenticated(false);
+                setIsAdmin(false);
+                history.push(LOGIN_PAGE);
+              });
+              setError(errorMessage.message);
+            }
+          });
         }).catch((e) => {
           setError(e.message);
           setIsLoading(false);

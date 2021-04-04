@@ -2,16 +2,29 @@ import React from 'react';
 import { Row, Col, Input, Button, Form } from 'antd';
 import './CuesInsertForm.css';
 import { CUE_SEPARATOR } from '../../../assets/constants/Constants';
+import { insertCues } from '../../../services/api/cue';
 
-const CuesInsertForm = ({ addCues }) => {
+const CuesInsertForm = ({ setCues }) => {
   const [form] = Form.useForm();
 
   const handleAdd = () => {
     form.validateFields()
         .then((fields) => {
           const newCues = new Set(fields['cues'].split(CUE_SEPARATOR).filter((cue) => cue !== ''));
-          addCues(newCues);
-        }).then(() => form.resetFields());
+          insertCues([...newCues])
+              .then((addedCues) => {
+                setCues((currCues) => [...addedCues, ...currCues]);
+                form.resetFields();
+              })
+              .catch((error) => {
+                form.setFields([
+                  {
+                    name: 'cues',
+                    errors: [error.response.data],
+                  },
+                ]);
+              });
+        });
   };
 
   return (
