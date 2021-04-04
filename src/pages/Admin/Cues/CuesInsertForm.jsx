@@ -20,7 +20,7 @@ const CuesInsertForm = ({ setCues }) => {
                 form.setFields([
                   {
                     name: 'cues',
-                    errors: [error.response.data],
+                    errors: [error.response],
                   },
                 ]);
               });

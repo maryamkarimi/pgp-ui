@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, message } from 'antd';
 import CuesInsertForm from './CuesInsertForm';
 import SearchableTable from '../../../components/SearchableTable/SearchableTable';
-import { EditableCell, EditableRow } from '../../../components/Editable';
+import { EditableCell, EditableRow } from './Editable';
 import { CUE_ID_FIELD, CUE_NAME_FIELD } from '../../../assets/constants/Constants';
 import { getCues, editCue } from '../../../services/api/cue';
 import './Cues.less';

@@ -6,10 +6,10 @@ export const getImages = () => {
       .get(getApiName(), '/get-images', {});
 };
 
-export const addImages = (images) => {
-  const body = { images };
+export const addImage = (key) => {
+  const body = { key };
   return API
-      .post(getApiName(), '/create-images', { body });
+      .post(getApiName(), '/create-image', { body });
 };
 
 export const updateImage = (image) => {
