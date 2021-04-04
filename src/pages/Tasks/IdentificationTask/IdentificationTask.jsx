@@ -4,6 +4,7 @@ import './IdentificationTask.less';
 import { ERROR_CUE_REQUIRED, ERROR_TOO_MANY_CUES } from '../../../assets/constants/Constants';
 import AnimatedIconButton from '../../../components/AnimatedIconButton/AnimatedIconButton';
 import { submitIdentificationAnswer } from '../../../services/api/results';
+import LoadableS3Image from '../../../components/LoadableS3Image/LoadableS3Image';
 
 const IdentificationTask = ({ task, incrementTask }) => {
   const [cues, setCues] = useState([]);
@@ -25,10 +26,13 @@ const IdentificationTask = ({ task, incrementTask }) => {
 
   return (
     <>
+      <h4>{task['question']}</h4>
+      <div className="image-container">
+        <LoadableS3Image imgKey={task['image']}/>
+      </div>
       <div className="select-container">
         <Select
           mode="tags"
-          autoFocus
           allowClear
           value={cues}
           placeholder='Use single words or short phrases if possible'

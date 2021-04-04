@@ -3,23 +3,32 @@ import './VerificationTask.less';
 import { Row } from 'antd';
 import AnimatedIconButton from '../../../components/AnimatedIconButton/AnimatedIconButton';
 import { submitVerificationAnswer } from '../../../services/api/results';
+import LoadableS3Image from '../../../components/LoadableS3Image/LoadableS3Image';
 
 const VerificationTask = ({ task, incrementTask }) => {
-  const submitNo = () => {
-    submitVerificationAnswer(task['cueImageId'], false).then(() => {});
-    incrementTask();
-  };
-
-  const submitYes = () => {
-    submitVerificationAnswer(task['cueImageId'], true).then(() => {});
+  const submitAnswer = (answer) => {
+    submitVerificationAnswer(task['cueImageId'], answer).then(() => {});
     incrementTask();
   };
 
   return (
-    <Row className="submit-buttons">
-      <AnimatedIconButton handleSubmit={submitNo} type='no' isValidated={() => true}/>
-      <AnimatedIconButton handleSubmit={submitYes} type='yes' isValidated={() => true}/>
-    </Row>
+    <>
+      <h4>{task['question']}</h4>
+      <div className="image-container">
+        <LoadableS3Image imgKey={task['image']}/>
+      </div>
+      <Row className="submit-buttons">
+        <AnimatedIconButton
+          handleSubmit={() => submitAnswer(false)}
+          type='no'
+          isValidated={() => true}
+        />
+        <AnimatedIconButton
+          handleSubmit={() => submitAnswer(true)}
+          type='yes'
+          isValidated={() => true}/>
+      </Row>
+    </>
   );
 };
 

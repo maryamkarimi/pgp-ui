@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Redirect, useLocation } from 'react-router-dom';
 import { useAppContext } from '../libs/contextLib';
-import PGPHeader from './PGPHeader/PGPHeader';
 
 const AuthenticatedRoute = ({ children, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -11,7 +10,6 @@ const AuthenticatedRoute = ({ children, ...rest }) => {
     <Route {...rest}>
       {isAuthenticated ? (
           <>
-            <PGPHeader/>
             {children}
           </>
             ) : (

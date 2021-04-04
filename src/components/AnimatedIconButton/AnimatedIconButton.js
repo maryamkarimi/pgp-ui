@@ -15,9 +15,9 @@ const AnimatedIconButton = ({ isValidated, handleSubmit, type }) => {
     if (isValidated()) {
       setAnimate(true);
       setTimeout(() => {
-        setAnimate(false);
         handleSubmit();
-      }, 800);
+        setAnimate(false);
+      }, 500);
     }
   };
 

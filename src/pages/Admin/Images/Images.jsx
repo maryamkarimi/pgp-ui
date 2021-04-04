@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Upload, Popconfirm, Card, Row, Col, Image, List, message } from 'antd';
+import { Upload, Popconfirm, Card, Row, Col, List, message } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined, InboxOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import { addImage, getImages, updateImage } from '../../../services/api/image';
 import { Storage } from 'aws-amplify';
+import { S3Image } from 'aws-amplify-react';
 import './Images.less';
 
 const { Dragger } = Upload;
@@ -13,16 +14,7 @@ const Images = () => {
 
   useEffect(() => {
     getImages()
-        .then((imageResult) => {
-          setImages([]);
-          imageResult.forEach((image) => {
-            Storage
-                .get(image.key)
-                .then((url) => {
-                  setImages((currImages) => currImages.concat({ url: url }));
-                });
-          });
-        })
+        .then((imageResult) => setImages(imageResult))
         .catch(() => {
           message.error('Failed to load images. Please try again!');
         });
@@ -50,12 +42,8 @@ const Images = () => {
         .then(({ key }) => {
           addImage(key)
               .then((image) => {
-                Storage
-                    .get(key)
-                    .then((url) => {
-                      setImages((currentImages) => [{ ...image, url: url }, ...currentImages]);
-                      onSuccess('Image uploaded successfully');
-                    });
+                setImages((currentImages) => [image, ...currentImages]);
+                onSuccess('Image uploaded successfully');
               })
               .catch((err) => {
                 onError({ err });
@@ -100,7 +88,7 @@ const Images = () => {
                     </Popconfirm>,
                   ]}
                 >
-                  <Image src={item.url}/>
+                  <S3Image className="image-container" imgKey={item.key}/>
                 </Card>
               </List.Item>
             )}

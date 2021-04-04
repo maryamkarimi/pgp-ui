@@ -15,6 +15,7 @@ import {
   ADMIN_IMAGES,
   PARTICIPANT_HOME,
 } from './assets/constants/Constants';
+import PGPHeader from './components/PGPHeader/PGPHeader';
 
 const Routes = () => {
   return (
@@ -27,12 +28,15 @@ const Routes = () => {
           <Tasks/>
         </AuthenticatedRoute>
         <AdminRoute exact path={ADMIN_HOME}>
+          <PGPHeader/>
           <Admin />
         </AdminRoute>
         <AdminRoute exact path={ADMIN_IMAGES}>
+          <PGPHeader/>
           <Images/>
         </AdminRoute>
         <AdminRoute exact path={ADMIN_CUES}>
+          <PGPHeader/>
           <Cues/>
         </AdminRoute>
         <Route>
