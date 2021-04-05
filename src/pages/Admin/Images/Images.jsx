@@ -21,7 +21,7 @@ const Images = () => {
   }, []);
 
   const updateImageVisibility = (image) => {
-    updateImage({ key: image.key, isActive: !image.isActive })
+    updateImage({ ...image, isActive: !image.isActive })
         .then(() => {
           setImages((currentImages) => {
             currentImages.map((img) =>
