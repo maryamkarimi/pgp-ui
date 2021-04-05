@@ -41,7 +41,7 @@ const Images = () => {
         .then(({ key }) => {
           addImage(key)
               .then((image) => {
-                setImages((currentImages) => [image, ...currentImages]);
+                setImages((currentImages) => [...currentImages, image]);
                 onSuccess('Image uploaded successfully');
               })
               .catch((err) => {
