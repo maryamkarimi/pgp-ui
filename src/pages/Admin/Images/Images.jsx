@@ -23,13 +23,12 @@ const Images = () => {
   const updateImageVisibility = (image) => {
     updateImage({ ...image, isActive: !image.isActive })
         .then(() => {
-          setImages((currentImages) => {
+          setImages((currentImages) =>
             currentImages.map((img) =>
             image.key === img.key ?
                 { ...image, isActive: !image.isActive } :
                 img,
-            );
-          });
+            ));
         });
   };
 
