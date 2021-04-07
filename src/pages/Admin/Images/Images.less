@@ -18,11 +18,11 @@
   margin: 0 0 5px;
 }
 
-.admin-images-page .ant-pagination, .admin-images-page .ant-pagination-item-link {
+.admin-images-page .ant-pagination, .admin-images-page .ant-pagination-item-link, .admin-images-page .ant-upload-span, .admin-images-page .ant-empty-description {
   color: @nickel-grey;
 }
 
-.admin-images-page .ant-pagination-item-active, .admin-images-page .ant-pagination-item  {
+.admin-images-page .ant-upload-list-item:hover .ant-upload-list-item-info, .admin-images-page .ant-pagination-item-active, .admin-images-page .ant-pagination-item  {
   background: @white-with-opacity;
 }
 
@@ -50,9 +50,11 @@
 
 .admin-images-page img {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
-.admin-images-page .ant-image {
+.admin-images-page .image-container {
   display: flex;
   height: 200px;
 }

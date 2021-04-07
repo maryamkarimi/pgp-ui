@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Input, Form, Switch, Col, Row } from 'antd';
 import './Editable.less';
-import { CUE_ACTIVE_FIELD, CUE_NAME_FIELD } from '../assets/constants/Constants';
+import { CUE_ACTIVE_FIELD, CUE_NAME_FIELD } from '../../../assets/constants/Constants';
 
 const EditableContext = React.createContext(null);
 
