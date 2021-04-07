@@ -1,14 +1,16 @@
 import React from 'react';
 import './VerificationTask.less';
-import { Row } from 'antd';
+import { message, Row } from 'antd';
 import AnimatedIconButton from '../../../components/AnimatedIconButton/AnimatedIconButton';
 import { submitVerificationAnswer } from '../../../services/api/results';
 import LoadableS3Image from '../../../components/LoadableS3Image/LoadableS3Image';
+import { FAILED_TO_SUBMIT_ERROR } from '../../../assets/constants/Constants';
 
 const VerificationTask = ({ task, incrementTask }) => {
   const submitAnswer = (answer) => {
-    submitVerificationAnswer(task['cueImageId'], answer).then(() => {});
-    incrementTask();
+    submitVerificationAnswer(task['cueImageId'], answer)
+        .then(() => incrementTask())
+        .catch(() => message.error(FAILED_TO_SUBMIT_ERROR));
   };
 
   return (
