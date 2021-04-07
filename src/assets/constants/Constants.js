@@ -35,3 +35,5 @@ export const ERROR_CUE_REQUIRED = 'Please identify at least one cue.';
 export const FAILED_TO_SUBMIT_ERROR = 'Failed to submit answer. ' +
                                       'Please try again or skip this question. ' +
                                       'Please contact us if the problem persists.';
+
+export const NO_TASKS_LEFT = 'You\'re all caught up! Please check back later for more tasks.';
