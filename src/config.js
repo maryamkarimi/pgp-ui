@@ -6,7 +6,7 @@ const config = {
   apiGateway: {
     NAME: 'pgp',
     REGION: 'us-east-2',
-    URL: 'https://nfl0p3kia2.execute-api.us-east-2.amazonaws.com/Prod',
+    URL: 'https://w2wl9g9ux4.execute-api.us-east-2.amazonaws.com/Prod',
   },
   cognito: {
     REGION: 'us-east-2',
