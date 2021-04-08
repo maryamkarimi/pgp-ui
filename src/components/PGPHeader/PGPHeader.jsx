@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useAppContext } from '../../libs/contextLib';
-import logo from '../../assets/images/pgp-logo-black2.PNG';
+import logo from '../../assets/images/pgp-logo-black2.png';
 import { Button, Layout } from 'antd';
 import { Auth } from 'aws-amplify';
 import { ADMIN_CUES, ADMIN_IMAGES, LOGIN_PAGE } from '../../assets/constants/Constants';
