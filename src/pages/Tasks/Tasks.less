@@ -7,8 +7,6 @@
   align-items: center;
   align-content: stretch;
   height: 100vh;
-  /* mobile viewport bug fix */
-  height: -webkit-fill-available;
 }
 
 .tasks-page .question-container {
@@ -31,6 +29,10 @@
 
 /* Small devices (450px and under) */
 @media only screen and (max-width: 450px) {
+  .tasks-page {
+    /* mobile viewport bug fix */
+    height: -webkit-fill-available;
+  }
   .tasks-page .question-container {
     width: 90%;
   }
