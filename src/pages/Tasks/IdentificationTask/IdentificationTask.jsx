@@ -57,6 +57,7 @@ const IdentificationTask = ({ task, incrementTask }) => {
         <Select
           mode="tags"
           allowClear
+          autoFocus
           value={cues}
           placeholder='Use single words or short phrases if possible'
           maxTagCount='responsive'
