@@ -40,6 +40,7 @@ const Routes = () => {
           <Cues/>
         </AdminRoute>
         <Route>
+          <PGPHeader/>
           <NotFound />
         </Route>
       </Switch>
