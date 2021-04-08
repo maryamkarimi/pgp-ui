@@ -1,12 +1,12 @@
 const config = {
   s3: {
-    REGION: 'YOUR_S3_UPLOADS_BUCKET_REGION',
-    BUCKET: 'YOUR_S3_UPLOADS_BUCKET_NAME',
+    REGION: 'us-east-2',
+    BUCKET: 'porngenomeimages190606-dev',
   },
   apiGateway: {
     NAME: 'pgp',
     REGION: 'us-east-2',
-    URL: 'YOUR_API_GATEWAY_URL',
+    URL: 'https://nfl0p3kia2.execute-api.us-east-2.amazonaws.com/Prod',
   },
   cognito: {
     REGION: 'us-east-2',
