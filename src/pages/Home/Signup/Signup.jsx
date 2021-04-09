@@ -7,10 +7,12 @@ import SignupForm from './SignupForm';
 import { signUpUser } from '../../../services/api/user';
 import './Signup.css';
 import { LOGIN_PAGE } from '../../../assets/constants/Constants';
+import { useHistory } from 'react-router-dom';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
-  const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated, setIsAdmin } = useAppContext();
+  const history = useHistory();
+  const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const [form] = Form.useForm();
@@ -61,12 +63,13 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
           signUpUser(userInfo)
               .then(() => userHasAuthenticated(true))
               .catch(() => {
-                Auth.signOut().then(() => {
-                  userHasAuthenticated(false);
-                  setIsAdmin(false);
-                  history.push(LOGIN_PAGE);
-                  setError('Signup failed.');
-                });
+                Auth.signOut()
+                    .then(() => {
+                      userHasAuthenticated(false);
+                      setIsAdmin(false);
+                      history.push(LOGIN_PAGE);
+                      setError('Signup failed.');
+                    });
               });
         }).catch((e) => {
           setError(e.message);
