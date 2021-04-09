@@ -6,12 +6,9 @@ import { Form, Input } from 'antd';
 import SignupForm from './SignupForm';
 import { signUpUser } from '../../../services/api/user';
 import './Signup.css';
-import { LOGIN_PAGE } from '../../../assets/constants/Constants';
-import { useHistory } from 'react-router-dom';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const { userHasAuthenticated, setIsAdmin } = useAppContext();
-  const history = useHistory();
   const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,7 +64,7 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
                     .then(() => {
                       userHasAuthenticated(false);
                       setIsAdmin(false);
-                      history.push(LOGIN_PAGE);
+                      setIsLoading(false);
                       setError('Signup failed.');
                     });
               });
