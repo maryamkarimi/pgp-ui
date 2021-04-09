@@ -6,7 +6,7 @@ import { Form, Input } from 'antd';
 import SignupForm from './SignupForm';
 import { signUpUser } from '../../../services/api/user';
 import './Signup.css';
-import { LOGIN_PAGE, UNDER_AGE_EXCEPTION } from '../../../assets/constants/Constants';
+import { LOGIN_PAGE } from '../../../assets/constants/Constants';
 
 const Signup = ({ footer, xsSpan, xlSpan }) => {
   const [newUser, setNewUser] = useState(null);
@@ -58,17 +58,16 @@ const Signup = ({ footer, xsSpan, xlSpan }) => {
     Auth.confirmSignUp(userInfo.email, fields.confirmationCode)
         .then(() => Auth.signIn(userInfo.email, userPassword))
         .then(() => {
-          userHasAuthenticated(true);
-          signUpUser(userInfo).catch((errorMessage) => {
-            if (UNDER_AGE_EXCEPTION === errorMessage.code) {
-              Auth.signOut().then(() => {
-                userHasAuthenticated(false);
-                setIsAdmin(false);
-                history.push(LOGIN_PAGE);
+          signUpUser(userInfo)
+              .then(() => userHasAuthenticated(true))
+              .catch(() => {
+                Auth.signOut().then(() => {
+                  userHasAuthenticated(false);
+                  setIsAdmin(false);
+                  history.push(LOGIN_PAGE);
+                  setError('Signup failed.');
+                });
               });
-              setError(errorMessage.message);
-            }
-          });
         }).catch((e) => {
           setError(e.message);
           setIsLoading(false);
