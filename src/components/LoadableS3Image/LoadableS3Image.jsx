@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { S3Image } from 'aws-amplify-react';
 import LoadSpinningIcon from '../LoadSpinningIcon/LoadSpinningIcon';
 
 const LoadableS3Image = ({ imgKey }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [imgKey]);
+
   return (
     <>
       { !isLoaded && <LoadSpinningIcon/> }
