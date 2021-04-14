@@ -3,6 +3,7 @@ import { Upload, Popconfirm, Card, Row, Col, List, message } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined, InboxOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import { addImage, getImages, updateImage } from '../../../services/api/image';
+import imageCompression from 'browser-image-compression';
 import { Storage } from 'aws-amplify';
 import { S3Image } from 'aws-amplify-react';
 import './Images.less';
@@ -34,15 +35,28 @@ const Images = () => {
 
   const uploadImage = (options) => {
     const { onSuccess, file, onError } = options;
-    Storage
-        .put(uuidv4(), file, {
-          contentType: 'image/*',
-        })
-        .then(({ key }) => {
-          addImage(key)
-              .then((image) => {
-                setImages((currentImages) => [...currentImages, image]);
-                onSuccess('Image uploaded successfully');
+
+    const compressionOptions = {
+      maxSizeMB: 0.8,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    imageCompression(file, compressionOptions)
+        .then((compressedFile) => {
+          Storage
+              .put(uuidv4(), compressedFile, {
+                contentType: 'image/*',
+              })
+              .then(({ key }) => {
+                addImage(key)
+                    .then((image) => {
+                      setImages((currentImages) => [...currentImages, image]);
+                      onSuccess('Image uploaded successfully');
+                    })
+                    .catch((err) => {
+                      onError({ err });
+                    });
               })
               .catch((err) => {
                 onError({ err });
