@@ -40,8 +40,8 @@ const NonEmptyTasks = ({ tasks, setTasks }) => {
 
   const getCompletedTaskStatus = () => {
     return completedTaskCount === 1 ?
-        `1 Question Completed` :
-        `${completedTaskCount} Questions Completed`;
+        `1 Question Completed in Session` :
+        `${completedTaskCount} Questions Completed in Session`;
   };
 
   const incrementTask = () => {
