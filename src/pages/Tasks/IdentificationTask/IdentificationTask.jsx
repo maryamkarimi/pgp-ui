@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { message, Row, Select } from 'antd';
 import './IdentificationTask.less';
 import {
@@ -14,6 +14,11 @@ import LoadableS3Image from '../../../components/LoadableS3Image/LoadableS3Image
 const IdentificationTask = ({ task, incrementTask }) => {
   const [cues, setCues] = useState([]);
   const [showRequiredMessage, setShowRequiredMessage] = useState(false);
+
+  useEffect(() => {
+    setCues([]);
+    setShowRequiredMessage(false);
+  }, [task]);
 
   const submitAnswer = () => {
     submitIdentificationAnswer(task['imageId'], cues)
