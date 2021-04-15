@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { message, Row, Select } from 'antd';
 import './IdentificationTask.less';
 import {
+  CUE_IDENTIFICATION_LABEL,
   ERROR_CUE_REQUIRED,
   ERROR_TOO_MANY_CUES,
   FAILED_TO_SUBMIT_ERROR,
@@ -58,6 +59,7 @@ const IdentificationTask = ({ task, incrementTask }) => {
       <div className="image-container">
         <LoadableS3Image imgKey={task['image']}/>
       </div>
+      <label>{CUE_IDENTIFICATION_LABEL}</label>
       <div className="select-container">
         <Select
           mode="tags"

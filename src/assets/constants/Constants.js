@@ -29,6 +29,7 @@ export const TASK_TYPE_IDENTIFICATION = 'I';
 export const TASK_TYPE_DESCRIPTION_VERIFICATION = 'Verification';
 export const TASK_TYPE_DESCRIPTION_IDENTIFICATION = 'Identification';
 
+export const CUE_IDENTIFICATION_LABEL = 'Identify one cue at a time and press enter to add more:';
 export const ERROR_TOO_MANY_CUES = 'Too many cues entered. Please limit your response to 5 cues.';
 export const ERROR_CUE_REQUIRED = 'Please identify at least one cue.';
 
